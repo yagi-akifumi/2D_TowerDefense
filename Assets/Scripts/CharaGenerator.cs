@@ -120,6 +120,7 @@ public class CharaGenerator : MonoBehaviour
 
 
         // 配置キャラ選択用のポップアップの表示
+        Debug.Log("true");
         placementCharaSelectPopUp.gameObject.SetActive(true);
         placementCharaSelectPopUp.ShowPopUp();
     }
@@ -131,6 +132,7 @@ public class CharaGenerator : MonoBehaviour
     {
 
         // 配置キャラ選択用のポップアップの非表示
+        Debug.Log("false");
         placementCharaSelectPopUp.gameObject.SetActive(false);
 
 

@@ -71,7 +71,7 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
     /// </summary>
     public void ShowPopUp()
     {
-
+        Debug.Log("表示する");
         // TODO 各キャラのボタンの制御
 
 
@@ -100,7 +100,7 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
     /// </summary>
     private void OnClickClosePopUp()
     {
-
+        Debug.Log("非表示にする");
         // ポップアップの非表示
         HidePopUp();
     }
