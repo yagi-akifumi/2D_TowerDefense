@@ -19,35 +19,39 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private int hp;
 
-
     private Tween tween;
+
     private Vector3[] paths;
+
     private Animator anim;       // Animator コンポーネントの取得用
 
 
-
-    void Start()
-    {
+    /// <summary>
+    /// 敵の設定
+    /// </summary>
+    public void SetUpEnemyController(Vector3[] pathsData)
+    {　　//　<=　☆①　public 修飾子を追加し、Start メソッドを SetUpEnemyController メソッドに変更し、引数を追加します。
 
         hp = maxHp;
 
         // Animator コンポーネントを取得して anim 変数に代入
         TryGetComponent(out anim);
 
+
         // 移動する地点を取得
-        paths = pathData.pathTranArray.Select(x => x.position).ToArray();
+        paths = pathsData;   //  <=  ☆②　引数で必要な情報が届いているので代入処理に変更します。
 
 
         // 各地点に向けて移動。今後この処理を制御するため、Tween 型の変数に DOPath メソッドの処理を代入しておく
-        tween = transform.DOPath(paths, 1000 / moveSpeed).SetEase(Ease.Linear).OnWaypointChange(ChangeAnimeDirection);    //  <=  DOPath の処理を tween 変数に代入します
+        tween = transform.DOPath(paths, 1000 / moveSpeed).SetEase(Ease.Linear).OnWaypointChange(ChangeAnimeDirection);
 
+
+
+        // 移動を一時停止
+        PauseMove();
 
 
     }
-
-
-    ////*  ここから修正  ☆①～⑥*////
-
 
     /// <summary>
     /// 敵の進行方向を取得して、移動アニメと同期
@@ -64,13 +68,10 @@ public class EnemyController : MonoBehaviour
         // 目標の位置と現在の位置との距離と方向を取得し、正規化処理を行い、単位ベクトルとする(方向の情報は持ちつつ、距離による速度差をなくして一定値にする)
         Vector3 direction = (transform.position - paths[index]).normalized;
 
-        //Debug.Log(direction);　　　　　　　　//　<=　☆　処理が正常に動いていることが分かっていればコメントアウトするか削除して構いません。
-
         // アニメーションの Palameter の値を更新し、移動アニメの BlendTree を制御して移動の方向と移動アニメを同期
         anim.SetFloat("X", direction.x);
         anim.SetFloat("Y", direction.y);
     }
-
 
     /// <summary>
     /// ダメージ計算
@@ -116,6 +117,22 @@ public class EnemyController : MonoBehaviour
 
         // 敵キャラの破壊
         Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// 移動を一時停止
+    /// </summary>
+    public void PauseMove()
+    {
+        tween.Pause();
+    }
+
+    /// <summary>
+    /// 移動を開始
+    /// </summary>
+    public void ResumeMove()
+    {
+        tween.Play();
     }
 
 }
