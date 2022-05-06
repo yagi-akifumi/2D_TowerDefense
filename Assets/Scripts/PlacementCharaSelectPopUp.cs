@@ -17,16 +17,45 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
 
     private CharaGenerator charaGenerator;
 
-    // TODO 制御を行いたい各コンポーネントの情報をアサインするための変数群を追加する
+    // 制御を行いたい各コンポーネントの情報をアサインするための変数群を追加する
+    [SerializeField]
+    private Image imgPickupChara;
+
+    [SerializeField]
+    private Text txtPickupCharaName;
+
+    [SerializeField]
+    private Text txtPickupCharaAttackPower;
+
+    [SerializeField]
+    private Text txtPickupCharaAttackRangeType;
+
+    [SerializeField]
+    private Text txtPickupCharaCost;
+
+    [SerializeField]
+    private Text txtPickupCharaMAxAttackCount;
+
+
+    [SerializeField]
+    private SelectCharaDetail selectCharaDetailPrefab;　　　　//　キャラのボタン用のプレファブをアサインする
+
+    [SerializeField]
+    private Transform selectCharaDetailTran;　　　　　　　　　//　キャラのボタンを生成する位置をアサインする
+
+    [SerializeField]
+    private List<SelectCharaDetail> selectCharaDetailsList = new List<SelectCharaDetail>();　　//　生成したキャラのボタンを管理する
+
+    private CharaData chooseCharaData;　　　　　　　　　　　　//　現在選択しているキャラの情報を管理する
 
 
     /// <summary>
     /// ポップアップの設定
     /// </summary>
     /// <param name="charaGenerator"></param>
-    public void SetUpPlacementCharaSelectPopUp(CharaGenerator charaGenerator)
-    {
-
+    public void SetUpPlacementCharaSelectPopUp(CharaGenerator charaGenerator, List<CharaData> haveCharaDataList)
+    {   //  <=  ☆　第2引数を追加します
+       
         this.charaGenerator = charaGenerator;
 
         // TODO 他に設定項目があったら追加する
@@ -34,18 +63,34 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
         // ポップアップを一度見えない状態にする
         canvasGroup.alpha = 0;
 
+        // 徐々にポップアップを表示する
+        ShowPopUp();
+
         // 各ボタンの操作を押せない状態にする
         SwithcActivateButtons(false);
 
 
-        // TODO スクリプタブル・オブジェクトに登録されているキャラ分のボタンのゲームオブジェクトを生成
+        // スクリプタブル・オブジェクトに登録されているキャラ分(引数で受け取った情報)を利用して
+        for (int i = 0; i < haveCharaDataList.Count; i++)
+        {
 
+            // ボタンのゲームオブジェクトを生成
+            SelectCharaDetail selectCharaDetail = Instantiate(selectCharaDetailPrefab, selectCharaDetailTran, false);
 
-        // TODO 最初に生成したボタンの場合
+            // ボタンのゲームオブジェクトの設定(CharaData を設定する)
+            selectCharaDetail.SetUpSelectCharaDetail(this, haveCharaDataList[i]);
 
+            // List に追加
+            selectCharaDetailsList.Add(selectCharaDetail);
 
-        // TODO 選択しているキャラとして初期値に設定
+            // 最初に生成したボタンの場合
+            if (i == 0)
+            {
 
+                // 選択しているキャラとして初期値に設定
+                SetSelectCharaDetail(haveCharaDataList[i]);
+            }
+        }
 
         // 各ボタンにメソッドを登録
         btnChooseChara.onClick.AddListener(OnClickSubmitChooseChara);
@@ -114,6 +159,30 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
         // TODO 各キャラのボタンの制御
 
         // ポップアップの非表示
-        //canvasGroup.DOFade(0, 0.5f).OnComplete(() => charaGenerator.InactivatePlacementCharaSelectPopUp());  // 次の手順でメソッドを追加するので、それまでコメントアウトしておいてください。
+        canvasGroup.DOFade(0, 0.5f).OnComplete(() => charaGenerator.InactivatePlacementCharaSelectPopUp());  // 次の手順でメソッドを追加するので、それまでコメントアウトしておいてください。
     }
+
+    /// <summary>
+    /// 選択された SelectCharaDetail の情報をポップアップ内のピックアップに表示する
+    /// </summary>
+    /// <param name="charaData"></param>
+    public void SetSelectCharaDetail(CharaData charaData)
+    {
+        chooseCharaData = charaData;
+
+        // 各値の設定
+        imgPickupChara.sprite = charaData.charaSprite;
+
+        txtPickupCharaName.text = charaData.charaName;
+
+        txtPickupCharaAttackPower.text = charaData.attackPower.ToString();
+
+        txtPickupCharaAttackRangeType.text = charaData.attackRange.ToString();
+
+        txtPickupCharaCost.text = charaData.cost.ToString();
+
+        txtPickupCharaMAxAttackCount.text = charaData.maxAttackCount.ToString();
+    }
+
+
 }
