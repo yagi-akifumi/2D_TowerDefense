@@ -457,3 +457,17 @@ MonoBehaviour:
   isAttack: 0
   enemy: {fileID: 0}
   attackCount: 3
+  txtAttackCount: {fileID: 5336758366314810163}
+  attackRangeArea: {fileID: 2028524332641212037}
+  charaData:
+    charaNo: 0
+    cost: 0
+    charaSprite: {fileID: 0}
+    charaName: 
+    attackPower: 0
+    attackRange: 0
+    intervalAttackTime: 0
+    maxAttackCount: 0
+    discription: 
+    charaAnim: {fileID: 0}
+  spriteRenderer: {fileID: 8986046046619011135}

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CharaController : MonoBehaviour
 {
-
     [SerializeField, Header("攻撃力")]
     private int attackPower = 1;
 
@@ -23,18 +22,28 @@ public class CharaController : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Text txtAttackCount;
 
+    [SerializeField]
+    private BoxCollider2D attackRangeArea;
+
+    [SerializeField]
+    private CharaData charaData;
+
+    private GameManager gameManager;
+
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+
     private void OnTriggerStay2D(Collider2D collision)
     {
 
-        // 攻撃範囲用のコライダーに侵入したゲームオブジェクトの Tag が Enemy である場合
+        // 攻撃中ではない場合で、かつ、敵の情報を未取得である場合
         if (!isAttack && !enemy)
         {
 
             Debug.Log("敵発見");
- 
-            // 敵の情報(EnemyController)を取得する。EnemyController がアタッチされているゲームオブジェクトを判別しているので、
-            // ここで、今までの Tag による判定と同じ動作で判定が行えます。
-            // そのため、☆①の処理から Tag の処理を削除しています。
+
+            // 敵の情報(EnemyController)を取得する
             if (collision.gameObject.TryGetComponent(out enemy))
             {
 
@@ -61,7 +70,9 @@ public class CharaController : MonoBehaviour
         // 攻撃中の間だけループ処理を繰り返す
         while (isAttack)
         {
+
             // TODO ゲームプレイ中のみ攻撃する
+
             timer++;
 
             // 攻撃のための待機時間が経過したら    
@@ -76,6 +87,7 @@ public class CharaController : MonoBehaviour
 
                 // 攻撃回数関連の処理をここに記述する            
                 attackCount--;
+
 
                 // 残り攻撃回数の表示更新
                 UpdateDisplayAttackCount();
@@ -100,8 +112,11 @@ public class CharaController : MonoBehaviour
     /// </summary>
     private void Attack()
     {
+
         Debug.Log("攻撃");
+
         // TODO キャラの上に攻撃エフェクトを生成
+
 
         // 敵キャラ側に用意したダメージ計算用のメソッドを呼び出して、敵にダメージを与える
         enemy.CulcDamage(attackPower);
@@ -118,6 +133,7 @@ public class CharaController : MonoBehaviour
             enemy = null;
         }
     }
+
     /// <summary>
     /// 残り攻撃回数の表示更新
     /// </summary>

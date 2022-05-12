@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
     /// 敵の設定
     /// </summary>
     public void SetUpEnemyController(Vector3[] pathsData)
-    {　　//　<=　☆①　public 修飾子を追加し、Start メソッドを SetUpEnemyController メソッドに変更し、引数を追加します。
+    {
 
         hp = maxHp;
 
@@ -40,18 +40,13 @@ public class EnemyController : MonoBehaviour
 
 
         // 移動する地点を取得
-        paths = pathsData;   //  <=  ☆②　引数で必要な情報が届いているので代入処理に変更します。
-
+        paths = pathsData;
 
         // 各地点に向けて移動。今後この処理を制御するため、Tween 型の変数に DOPath メソッドの処理を代入しておく
         tween = transform.DOPath(paths, 1000 / moveSpeed).SetEase(Ease.Linear).OnWaypointChange(ChangeAnimeDirection);
 
-
-
         // 移動を一時停止
         PauseMove();
-
-
     }
 
     /// <summary>
@@ -96,9 +91,9 @@ public class EnemyController : MonoBehaviour
 
         // TODO 演出用のエフェクト生成
 
+
         // ヒットストップ演出
         StartCoroutine(WaitMove());
-
     }
 
     /// <summary>

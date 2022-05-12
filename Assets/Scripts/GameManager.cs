@@ -7,11 +7,18 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private EnemyGenerator enemyGenerator;
 
+
+    ////*  新しい変数の宣言を１つ追加  *////
+
+
     [SerializeField]
     private CharaGenerator charaGenerator;
 
 
-    public bool isEnemyGenerate;               // ここに EnemyGenerator スクリプト側の変数を４つ移管します
+    ////*  ここまで  *////
+
+
+    public bool isEnemyGenerate;
 
     public int generateIntervalTime;
 
@@ -22,8 +29,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+
+        ////*  ここから処理を追加  *////
+
+
         // キャラ配置用ポップアップの生成と設定
         StartCoroutine(charaGenerator.SetUpCharaGenerator(this));
+
+
+        ////*  ここまで  *////
 
 
         isEnemyGenerate = true;
