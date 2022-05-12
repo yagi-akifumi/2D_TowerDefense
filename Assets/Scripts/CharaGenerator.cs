@@ -127,7 +127,7 @@ public class CharaGenerator : MonoBehaviour
 
         // ポップアップの設定
         // TODO あとでキャラ設定用の情報も渡す
-        placementCharaSelectPopUp.SetUpPlacementCharaSelectPopUp(this);
+        //placementCharaSelectPopUp.SetUpPlacementCharaSelectPopUp(this);
 
         // ポップアップを非表示にする
         placementCharaSelectPopUp.gameObject.SetActive(false);

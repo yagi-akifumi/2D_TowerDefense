@@ -9,7 +9,7 @@ public class EnemyGenerator : MonoBehaviour
     private EnemyController enemyControllerPrefab;
 
     [SerializeField]
-    private PathData[] pathDatas;
+    private PathData[] pathDatas;    //　<=　☆　配列に変更し、変数名も複数形に修正します
 
     [SerializeField]
     private DrawPathLine pathLinePrefab;
@@ -33,30 +33,25 @@ public class EnemyGenerator : MonoBehaviour
         while (gameManager.isEnemyGenerate)
         {
 
-            if (this.gameManager.currentGameState == GameManager.GameState.Play)
-            {　　　//　<=　☆①　GameState が Play 以外では生成を一時停止
+            // タイマーを加算
+            timer++;
 
-                // タイマーを加算
-                timer++;
+            // タイマーの値が敵の生成待機時間を超えたら
+            if (timer > gameManager.generateIntervalTime)
+            {
 
-                // タイマーの値が敵の生成待機時間を超えたら
-                if (timer > gameManager.generateIntervalTime)
-                {
+                // 次の生成のためにタイマーをリセット
+                timer = 0;
 
-                    // 次の生成のためにタイマーをリセット
-                    timer = 0;
+                // 敵の生成
+                GenerateEnemy();
 
-                    //GenerateEnemy();                              //  <=  ☆②　コメントアウトします
+                // 敵の生成数のカウントアップと List への追加
+                gameManager.AddEnemyList();
 
-                    // 敵の生成し、敵の生成数のカウントアップと List への追加
-                    gameManager.AddEnemyList(GenerateEnemy());   //　<=　☆③　引数に GenerateEnemy メソッドを設定します
-
-                    // 最大生成数を超えたら生成停止
-                    gameManager.JudgeGenerateEnemysEnd();
-                }
-            }                                                   //  <=  ☆④　if 文終了用のブロックを追加します
-
-
+                // 最大生成数を超えたら生成停止
+                gameManager.JudgeGenerateEnemysEnd();
+            }
 
             // 1フレーム中断
             yield return null;
@@ -69,27 +64,33 @@ public class EnemyGenerator : MonoBehaviour
     /// <summary>
     /// 敵の生成
     /// </summary>
-    /// <param name="generateNo"></param>
-    /// <returns></returns>
-    public EnemyController GenerateEnemy(int generateNo = 0)
-    {　　//　<=　☆①　戻り値を変更し、引数を追加します
+    public void GenerateEnemy()
+    {
+
+
+        ////*  ここから☆①～③の処理を追加・修正　*////
+
+
         // ランダムな値を配列の最大要素数内で取得
         int randomValue = Random.Range(0, pathDatas.Length);　　　//　<=　☆①　処理を追加します
 
+
+
         // 指定した位置に敵を生成
-        EnemyController enemyController = Instantiate(enemyControllerPrefab, pathDatas[randomValue].generateTran.position, Quaternion.identity);
+        EnemyController enemyController = Instantiate(enemyControllerPrefab, pathDatas[randomValue].generateTran.position, Quaternion.identity);　　//　<=　☆②　第2引数を配列の要素番号を参照するように修正します
 
-        // 移動する地点を取得(<=　いままでEnemyController スクリプト内で行っていた処理をこちらに移動します)
-        Vector3[] paths = pathDatas[randomValue].pathTranArray.Select(x => x.position).ToArray();
+        // 移動する地点を取得
+        Vector3[] paths = pathDatas[randomValue].pathTranArray.Select(x => x.position).ToArray();   //　<=　☆③　検索対象を配列の要素番号を参照するように修正します
 
-        // 敵キャラの初期設定を行い、移動を一時停止しておく
+
+        ////*  ここまで　*////
+
+
+        // 敵の情報の設定
         enemyController.SetUpEnemyController(paths);
 
         // 敵の移動経路のライン表示を生成の準備
-        StartCoroutine(PreparateCreatePathLine(paths, enemyController));
-
-        return enemyController;　　　//　<=　☆②　戻り値の設定をします
-
+        StartCoroutine(PreparateCreatePathLine(paths));
     }
 
     /// <summary>
@@ -97,18 +98,15 @@ public class EnemyGenerator : MonoBehaviour
     /// </summary>
     /// <param name="paths"></param>
     /// <returns></returns>
-    private IEnumerator PreparateCreatePathLine(Vector3[] paths, EnemyController enemyController)
+    private IEnumerator PreparateCreatePathLine(Vector3[] paths)
     {
+
         // ラインの生成と削除。この処理が終了するまでは、この処理より下の処理は実行されない
         yield return StartCoroutine(CreatePathLine(paths));
 
-        // ☆　ポイントです。この処理が何故必要なのかを考えてみましょう。
-        yield return new WaitUntil(() => gameManager.currentGameState == GameManager.GameState.Play);
-
         // 敵の移動を再開
-        enemyController.ResumeMove();
+        enemyControllerPrefab.ResumeMove();
     }
-
 
     /// <summary>
     /// 移動経路用のラインの生成と破棄

@@ -25,7 +25,7 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
     /// ポップアップの設定
     /// </summary>
     /// <param name="charaGenerator"></param>
-    public void SetUpPlacementCharaSelectPopUp(CharaGenerator charaGenerator)
+    public void SetUpPlacementCharaSelectPopUp(CharaGenerator charaGenerator, List<CharaData> charaDatasList)
     {
 
         this.charaGenerator = charaGenerator;

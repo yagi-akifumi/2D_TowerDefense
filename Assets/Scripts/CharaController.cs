@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -140,5 +141,10 @@ public class CharaController : MonoBehaviour
     private void UpdateDisplayAttackCount()
     {
         txtAttackCount.text = attackCount.ToString();
+    }
+
+    internal void SetUpChara(CharaData charaData, GameManager gameManager)
+    {
+        throw new NotImplementedException();
     }
 }
