@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharaController : MonoBehaviour
 {
     [SerializeField, Header("攻撃力")]
-    private int attackPower = 5;
+    private int attackPower = 1;
 
     [SerializeField, Header("攻撃するまでの待機時間")]
     private float intervalAttackTime = 60.0f;
@@ -15,6 +15,12 @@ public class CharaController : MonoBehaviour
 
     [SerializeField]
     private EnemyController enemy;
+
+    [SerializeField]
+    private int attackCount = 3;     // TODO 現在の攻撃回数の残り。あとで CharaData クラスの値を反映させる
+
+    [SerializeField]
+    private UnityEngine.UI.Text txtAttackCount;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -72,9 +78,20 @@ public class CharaController : MonoBehaviour
                 // 攻撃
                 Attack();
 
-                // TODO 攻撃回数関連の処理をここに記述する
-            }
+                // 攻撃回数関連の処理をここに記述する            
+                attackCount--;
 
+                // 残り攻撃回数の表示更新
+                UpdateDisplayAttackCount();
+
+
+                // 攻撃回数がなくなったら
+                if (attackCount <= 0)
+                {
+                    // キャラ破壊
+                    Destroy(gameObject);
+                }
+            }
             // １フレーム処理を中断する(この処理を書き忘れると無限ループになり、Unity エディターが動かなくなって再起動することになります。注意！)
             yield return null;
         }
@@ -101,4 +118,13 @@ public class CharaController : MonoBehaviour
             enemy = null;
         }
     }
+
+    /// <summary>
+    /// 残り攻撃回数の表示更新
+    /// </summary>
+    private void UpdateDisplayAttackCount()
+    {
+        txtAttackCount.text = attackCount.ToString();
+    }
+
 }
