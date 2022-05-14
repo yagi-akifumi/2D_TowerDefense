@@ -18,7 +18,10 @@ public class CharaGenerator : MonoBehaviour
     private PlacementCharaSelectPopUp placementCharaSelectPopUpPrefab;　　　//　PlacementCharaSelectPopUp プレファブゲームオブジェクトをアサイン用
 
     [SerializeField]
-    private Transform canvasTran;　　　　　　　　　　　　　　　　　　　　　 //　PlacementCharaSelectPopUp ゲームオブジェクトの生成位置の登録用
+    private Transform canvasTran;                      //　PlacementCharaSelectPopUp ゲームオブジェクトの生成位置の登録用
+
+    [SerializeField, Header("キャラのデータリスト")]
+    private List<CharaData> charaDatasList = new List<CharaData>();
 
     private PlacementCharaSelectPopUp placementCharaSelectPopUp;　　　　　　//　生成された PlacementCharaSelectPopUp ゲームオブジェクトを代入するための変数
 
@@ -78,8 +81,8 @@ public class CharaGenerator : MonoBehaviour
         // TODO ステージのデータを取得
 
 
-        // TODO キャラのデータをリスト化
-
+        // キャラのデータをリスト化
+        CreateHaveCharaDatasList();
 
         // キャラ配置用のポップアップの生成
         yield return StartCoroutine(CreatePlacementCharaSelectPopUp());
@@ -98,7 +101,7 @@ public class CharaGenerator : MonoBehaviour
 
         // ポップアップの設定
         // TODO あとでキャラ設定用の情報も渡す
-        placementCharaSelectPopUp.SetUpPlacementCharaSelectPopUp(this);
+        placementCharaSelectPopUp.SetUpPlacementCharaSelectPopUp(this,charaDatasList);
 
         // ポップアップを非表示にする
         placementCharaSelectPopUp.gameObject.SetActive(false);
@@ -145,5 +148,19 @@ public class CharaGenerator : MonoBehaviour
 
         // TODO カレンシーの加算処理を再開
 
+    }
+
+    /// <summary>
+    /// キャラのデータをリスト化
+    /// </summary>
+    private void CreateHaveCharaDatasList()
+    {
+
+        // CharaDataSO スクリプタブル・オブジェクト内の CharaData を１つずつリストに追加
+        // TODO スクリプタブル・オブジェクトではなく、実際にプレイヤーが所持しているキャラの番号を元にキャラのデータのリストを作成
+        for (int i = 0; i < DataBaseManager.instance.charaDataSO.charaDatasList.Count; i++)
+        {
+            charaDatasList.Add(DataBaseManager.instance.charaDataSO.charaDatasList[i]);
+        }
     }
 }
