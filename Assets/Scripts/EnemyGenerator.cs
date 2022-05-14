@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
@@ -10,7 +11,10 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField]
     private PathData pathData;
 
-    private GameManager gameManager;   //　☆　追加します
+    [SerializeField]
+    private DrawPathLine pathLinePrefab;
+
+    private GameManager gameManager;
 
     /// <summary>
     /// 敵の生成準備
@@ -62,10 +66,65 @@ public class EnemyGenerator : MonoBehaviour
         // 指定した位置に敵を生成
         EnemyController enemyController = Instantiate(enemyControllerPrefab, pathData.generateTran.position, Quaternion.identity);
 
-        // TODO 移動する地点を取得
+        // 移動する地点を取得(<=　いままでEnemyController スクリプト内で行っていた処理をこちらに移動します)
+        Vector3[] paths = pathData.pathTranArray.Select(x => x.position).ToArray();
 
-        // TODO 敵キャラの初期設定を行い、移動を一時停止しておく
+        // 敵キャラの初期設定を行い、移動を一時停止しておく
+        enemyController.SetUpEnemyController(paths);
 
-        // TODO 敵の移動経路のライン表示を生成の準備
+        // 敵の移動経路のライン表示を生成の準備
+        StartCoroutine(PreparateCreatePathLine(paths, enemyController));
     }
+
+    /// <summary>
+    /// ライン生成の準備
+    /// </summary>
+    /// <param name="paths"></param>
+    /// <returns></returns>
+    private IEnumerator PreparateCreatePathLine(Vector3[] paths, EnemyController enemyController)
+    {
+
+        // ラインの生成と削除。この処理が終了するまでは、この処理より下の処理は実行されない
+        yield return StartCoroutine(CreatePathLine(paths));
+
+        // 敵の移動を再開
+        enemyController.ResumeMove();
+    }
+
+    /// <summary>
+    /// 移動経路用のラインの生成と破棄
+    /// </summary>
+    private IEnumerator CreatePathLine(Vector3[] paths)
+    {
+
+        // List の宣言と初期化
+        List<DrawPathLine> drawPathLinesList = new List<DrawPathLine>();
+
+        // １つの Path ごとに１つずつ順番にラインを生成
+        for (int i = 0; i < paths.Length - 1; i++)
+        {
+            DrawPathLine drawPathLine = Instantiate(pathLinePrefab, transform.position, Quaternion.identity);
+
+            Vector3[] drawPaths = new Vector3[2] { paths[i], paths[i + 1] };
+
+            drawPathLine.CreatePathLine(drawPaths);
+
+            drawPathLinesList.Add(drawPathLine);
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        // すべてのラインを生成して待機
+        yield return new WaitForSeconds(0.5f);
+
+        // １つのラインずつ順番に削除する
+        for (int i = 0; i < drawPathLinesList.Count; i++)
+        {
+            Destroy(drawPathLinesList[i].gameObject);
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+
 }
