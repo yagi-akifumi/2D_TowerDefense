@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 854fac38a912b44afa316aca6be1f9af, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f70ac5df97c845af947e39c8aebd55a, type: 3}
   m_Name: AttackRangeSizeSO
   m_EditorClassIdentifier: 
-  attackRangeSizesList:
-  - attackRangeType: 0
-    size: {x: 2, y: 2}
-  - attackRangeType: 1
-    size: {x: 3, y: 3}
-  - attackRangeType: 3
-    size: {x: 4, y: 4}
+  attackRangeSizesList: []

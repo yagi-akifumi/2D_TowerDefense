@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
 
     private Animator anim;　　　　　　 // Animator コンポーネントの取得用
 
+    public int attackPower;
 
     /// <summary>
     /// 敵の設定
