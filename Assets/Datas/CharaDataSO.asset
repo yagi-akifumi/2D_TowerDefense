@@ -12,4 +12,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a6f42c72ba04950a162ef840f0fb35, type: 3}
   m_Name: CharaDataSO
   m_EditorClassIdentifier: 
-  charaDatasList: []
+  charaDatasList:
+  - charaNo: 0
+    cost: 100
+    charaSprite: {fileID: -1970166881135931438, guid: 78b84c3ff923c4a80aeec8dce37e84c2,
+      type: 3}
+    charaName: Aria
+    attackPower: 1
+    attackRange: 0
+    intervalAttackTime: 120
+    maxAttackCount: 3
+    discription: "\u5E7C\u3044\u5C11\u5E74"
+  - charaNo: 1
+    cost: 200
+    charaSprite: {fileID: -5540651527726495389, guid: 17485672e4e274e10a4d08764b38594b,
+      type: 3}
+    charaName: Billy
+    attackPower: 2
+    attackRange: 0
+    intervalAttackTime: 200
+    maxAttackCount: 2
+    discription: "\u653B\u6483\u7BC4\u56F2\u306F\u72ED\u3044"
+  - charaNo: 2
+    cost: 300
+    charaSprite: {fileID: 4814029082027783119, guid: f00a08f0d1d764205bc6ae5fe4a5dad9,
+      type: 3}
+    charaName: Crea
+    attackPower: 2
+    attackRange: 1
+    intervalAttackTime: 200
+    maxAttackCount: 2
+    discription: "Middle\u304C\u3067\u304D\u308B"
+  - charaNo: 3
+    cost: 400
+    charaSprite: {fileID: -8654730522281584288, guid: a94f22a1c74d0442a9289999cd2e4794,
+      type: 3}
+    charaName: Dino
+    attackPower: 3
+    attackRange: 2
+    intervalAttackTime: 250
+    maxAttackCount: 3
+    discription: "\u52C7\u8005\u30C7\u30A3\u30CE"
+  - charaNo: 4
+    cost: 500
+    charaSprite: {fileID: -867561851619585449, guid: c59d8a91a741c445aa8dfcaaf16a4667,
+      type: 3}
+    charaName: Elen
+    attackPower: 5
+    attackRange: 2
+    intervalAttackTime: 100
+    maxAttackCount: 5
+    discription: "\u6700\u5F37\u306E\u6226\u58EB\u30A8\u30EC\u30F3"
