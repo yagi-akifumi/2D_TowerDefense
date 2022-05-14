@@ -258,6 +258,7 @@ MonoBehaviour:
     intervalAttackTime: 0
     maxAttackCount: 0
     discription: 
+    charaAnim: {fileID: 0}
 --- !u!1 &6372168614554044420
 GameObject:
   m_ObjectHideFlags: 0

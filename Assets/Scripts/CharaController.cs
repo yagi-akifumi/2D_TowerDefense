@@ -30,7 +30,13 @@ public class CharaController : MonoBehaviour
 
     private GameManager gameManager;
 
-    private SpriteRenderer spriteRenderer;
+    //private SpriteRenderer spriteRenderer;
+
+    private Animator anim;
+
+    private string overrideClipName = "Chara_4"; //   　　<=  ☆　代入する文字列は自分のプロジェクトの Animationビュー の Motion に登録されている AnimationClip の名前を登録する
+
+    private AnimatorOverrideController overrideController;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -162,14 +168,48 @@ public class CharaController : MonoBehaviour
         UpdateDisplayAttackCount();
 
         // キャラ画像の設定。アニメを利用するようになったら、この処理はやらない
-        if (TryGetComponent(out spriteRenderer))
-        {
+        //if (TryGetComponent(out spriteRenderer))
+        //{
 
-            // 画像を配置したキャラの画像に差し替える
-            spriteRenderer.sprite = this.charaData.charaSprite;
-        }
+        // 画像を配置したキャラの画像に差し替える
+        //spriteRenderer.sprite = this.charaData.charaSprite;
+        //}
 
         // TODO キャラごとの AnimationClip を設定
+        SetUpAnimation();
+    }
+
+    /// <summary>
+    /// Motion に登録されている AnimationClip を変更
+    /// </summary>
+    private void SetUpAnimation()
+    {
+        if (TryGetComponent(out anim))
+        {
+
+            overrideController = new AnimatorOverrideController();
+
+            overrideController.runtimeAnimatorController = anim.runtimeAnimatorController;
+            anim.runtimeAnimatorController = overrideController;
+
+            AnimatorStateInfo[] layerInfo = new AnimatorStateInfo[anim.layerCount];
+
+            for (int i = 0; i < anim.layerCount; i++)
+            {
+                layerInfo[i] = anim.GetCurrentAnimatorStateInfo(i);
+            }
+
+            overrideController[overrideClipName] = this.charaData.charaAnim;
+
+            anim.runtimeAnimatorController = overrideController;
+
+            anim.Update(0.0f);
+
+            for (int i = 0; i < anim.layerCount; i++)
+            {
+                anim.Play(layerInfo[i].fullPathHash, i, layerInfo[i].normalizedTime);
+            }
+        }
     }
 
 }
