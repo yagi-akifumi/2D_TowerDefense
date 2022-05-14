@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private int hp;
 
+
     private Tween tween;
 
     private Vector3[] paths;
@@ -35,6 +36,10 @@ public class EnemyController : MonoBehaviour
 
         // 移動する地点を取得
         paths = pathData.pathTranArray.Select(x => x.position).ToArray();
+
+
+        ////*  ここから処理を修正　*////
+
 
         // 各地点に向けて移動。今後この処理を制御するため、Tween 型の変数に DOPath メソッドの処理を代入しておく
         tween = transform.DOPath(paths, 1000 / moveSpeed).SetEase(Ease.Linear).OnWaypointChange(ChangeAnimeDirection);    //  <=  DOPath の処理を tween 変数に代入します
@@ -55,7 +60,8 @@ public class EnemyController : MonoBehaviour
 
         // 目標の位置と現在の位置との距離と方向を取得し、正規化処理を行い、単位ベクトルとする(方向の情報は持ちつつ、距離による速度差をなくして一定値にする)
         Vector3 direction = (transform.position - paths[index]).normalized;
-        Debug.Log(direction);
+
+        //Debug.Log(direction);　　　　　　　　//　<=　☆　処理が正常に動いていることが分かっていればコメントアウトするか削除して構いません。
 
         // アニメーションの Palameter の値を更新し、移動アニメの BlendTree を制御して移動の方向と移動アニメを同期
         anim.SetFloat("X", direction.x);
@@ -94,12 +100,15 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     public void DestroyEnemy()
     {
+
         // Kill メソッドを実行し、tween 変数に代入されている処理(DOPath の処理)を終了する
         tween.Kill();
 
         // TODO SEの処理
 
+
         // TODO 破壊時のエフェクトの生成や関連する処理
+
 
         // 敵キャラの破壊
         Destroy(gameObject);
