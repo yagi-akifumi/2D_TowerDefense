@@ -52,6 +52,6 @@ public class SelectCharaDetail : MonoBehaviour
 
         // タップした SelectCharaDetail の情報をポップアップに送る
         // TODO 次の手順で、PlacementCharaSelectPop スクリプト内に SetSelectCharaDetail メソッドを作成するため、それまでコメントアウトしておいてください
-        //placementCharaSelectPop.SetSelectCharaDetail(charaData);
+        placementCharaSelectPop.SetSelectCharaDetail(charaData);
     }
 }

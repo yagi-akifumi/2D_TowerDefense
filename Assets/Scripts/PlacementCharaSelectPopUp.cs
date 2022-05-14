@@ -35,7 +35,6 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
     [SerializeField]
     private Text txtPickupCharaMaxAttackCount;
 
-
     [SerializeField]
     private SelectCharaDetail selectCharaDetailPrefab;　　　　//　キャラのボタン用のプレファブをアサインする
 
@@ -63,6 +62,9 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
         // ポップアップを一度見えない状態にする
         canvasGroup.alpha = 0;
 
+        // 徐々にポップアップを表示する
+        ShowPopUp();
+
         // 各ボタンの操作を押せない状態にする
         SwithcActivateButtons(false);
 
@@ -83,7 +85,6 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
             // 最初に生成したボタンの場合
             if (i == 0)
             {
-
                 // 選択しているキャラとして初期値に設定
                 SetSelectCharaDetail(haveCharaDataList[i]);
             }
@@ -129,7 +130,7 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
         // TODO コストの支払いが可能か最終確認
 
         // TODO 選択しているキャラの生成
-
+        charaGenerator.CreateChooseChara(chooseCharaData);
 
         // ポップアップの非表示
         HidePopUp();

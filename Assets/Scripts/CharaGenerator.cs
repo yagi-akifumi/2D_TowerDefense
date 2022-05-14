@@ -6,7 +6,10 @@ using UnityEngine.Tilemaps;　　　　//　<=　タイルマップの機能を�
 public class CharaGenerator : MonoBehaviour
 {
     [SerializeField]
-    private GameObject charaPrefab;　// キャラのプレファブの登録用
+    private GameObject charaPrefab;
+
+    [SerializeField]
+    private CharaController charaControllerPrefab;　　 //　<=　☆　新しく、CharaCotroller 型で変数を宣言します。アサインするプレファブは同じものです
 
     [SerializeField]
     private Grid grid;            // タイルマップの座標を取得するための情報。Grid_Base 側の Grid を指定する 
@@ -44,10 +47,6 @@ public class CharaGenerator : MonoBehaviour
             // タップした位置のタイルのコライダーの情報を確認し、それが None であるなら
             if (tilemaps.GetColliderType(gridPos) == Tile.ColliderType.None)
             {
-
-                // キャラ生成処理をメソッド化
-                //CreateChara(gridPos);　　　　　　　　　　//　<=　☆①　タップしてもすぐにキャラの生成を行わないように、この処理はコメントアウトか削除してください
-
                 // 配置キャラ選択用ポップアップの表示
                 ActivatePlacementCharaSelectPopUp();    //　<=　☆②　TODO を実装します
             }
@@ -61,11 +60,11 @@ public class CharaGenerator : MonoBehaviour
     private void CreateChara(Vector3Int gridPos)
     {
 
-        // タップした位置にキャラを生成して配置
-        GameObject chara = Instantiate(charaPrefab, gridPos, Quaternion.identity);
+    // タップした位置にキャラを生成して配置
+    GameObject chara = Instantiate(charaPrefab, gridPos, Quaternion.identity);
 
-        // キャラの位置がタイルの左下を 0,0 として生成しているので、タイルの中央にくるように位置を調整
-        chara.transform.position = new Vector2(chara.transform.position.x + 0.5f, chara.transform.position.y + 0.5f);
+    // キャラの位置がタイルの左下を 0,0 として生成しているので、タイルの中央にくるように位置を調整
+    chara.transform.position = new Vector2(chara.transform.position.x + 0.5f, chara.transform.position.y + 0.5f);
     }
 
     /// <summary>
@@ -163,4 +162,31 @@ public class CharaGenerator : MonoBehaviour
             charaDatasList.Add(DataBaseManager.instance.charaDataSO.charaDatasList[i]);
         }
     }
+
+    /// <summary>
+    /// 選択したキャラを生成して配置
+    /// </summary>
+    /// <param name="charaData"></param>
+    public void CreateChooseChara(CharaData charaData)
+    {
+
+        // TODO コスト支払い
+
+
+        // キャラをタップした位置に生成
+        CharaController chara = Instantiate(charaControllerPrefab, gridPos, Quaternion.identity);
+
+        // 位置が左下を 0,0 としているので、中央にくるように調整
+        chara.transform.position = new Vector2(chara.transform.position.x + 0.5f, chara.transform.position.y + 0.5f);
+
+        // キャラの設定
+        chara.SetUpChara(charaData, gameManager);    //  <=  ☆　CharaController 側に SetUpChara メソッドがまだないので、次の手順になってからコメントアウトを解除します。
+
+        Debug.Log(charaData.charaName);   // 選択しているキャラのデータがとどいているかを確認するためのログ表示
+
+
+        // TODO キャラを List に追加
+
+    }
+
 }

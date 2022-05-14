@@ -22,6 +22,16 @@ public class CharaController : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Text txtAttackCount;
 
+    [SerializeField]
+    private BoxCollider2D attackRangeArea;
+
+    [SerializeField]
+    private CharaData charaData;
+
+    private GameManager gameManager;
+
+    private SpriteRenderer spriteRenderer;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
 
@@ -125,6 +135,41 @@ public class CharaController : MonoBehaviour
     private void UpdateDisplayAttackCount()
     {
         txtAttackCount.text = attackCount.ToString();
+    }
+
+    /// <summary>
+    /// キャラの設定
+    /// </summary>
+    /// <param name="charaData"></param>
+    /// <param name="gameManager"></param>
+    public void SetUpChara(CharaData charaData, GameManager gameManager)
+    {
+
+        this.charaData = charaData;
+        this.gameManager = gameManager;
+
+        // 各値を CharaData から取得して設定
+        attackPower = this.charaData.attackPower;
+
+        intervalAttackTime = this.charaData.intervalAttackTime;
+
+        // DataBaseManager に登録されている AttackRangeSizeSO スクリプタブル・オブジェクトのデータと照合を行い、CharaData の AttackRangeType の情報を元に Size を設定
+        attackRangeArea.size = DataBaseManager.instance.GetAttackRangeSize(this.charaData.attackRange);
+
+        attackCount = this.charaData.maxAttackCount;
+
+        // 残りの攻撃回数の表示更新
+        UpdateDisplayAttackCount();
+
+        // キャラ画像の設定。アニメを利用するようになったら、この処理はやらない
+        if (TryGetComponent(out spriteRenderer))
+        {
+
+            // 画像を配置したキャラの画像に差し替える
+            spriteRenderer.sprite = this.charaData.charaSprite;
+        }
+
+        // TODO キャラごとの AnimationClip を設定
     }
 
 }
