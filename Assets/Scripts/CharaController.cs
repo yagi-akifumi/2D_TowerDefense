@@ -41,28 +41,21 @@ public class CharaController : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
 
-        // 攻撃範囲用のコライダーに侵入したゲームオブジェクトの Tag が Enemy である場合
-        if (collision.tag == "Enemy")
+        // 攻撃中ではない場合で、かつ、敵の情報を未取得である場合
+        if (!isAttack && !enemy)
         {
 
-            // 攻撃中ではない場合で、かつ、敵の情報を未取得である場合
-            if (!isAttack && !enemy)
+            Debug.Log("敵発見");
+
+            // 敵の情報(EnemyController)を取得する
+            if (collision.gameObject.TryGetComponent(out enemy))
             {
 
-                Debug.Log("敵発見");
+                // 情報を取得できたら、攻撃状態にする
+                isAttack = true;
 
-                // 敵の情報(EnemyController)を取得する。EnemyController がアタッチされているゲームオブジェクトを判別しているので、
-                // ここで、今までの Tag による判定と同じ動作で判定が行えます。
-                // そのため、☆①の処理から Tag の処理を削除しています
-                if (collision.gameObject.TryGetComponent(out enemy))
-                {
-
-                    // 情報を取得できたら、攻撃状態にする
-                    isAttack = true;
-
-                    // 攻撃の準備に入る
-                    StartCoroutine(PrepareteAttack());
-                }
+                // 攻撃の準備に入る
+                StartCoroutine(PrepareteAttack());
             }
         }
     }
@@ -81,13 +74,11 @@ public class CharaController : MonoBehaviour
         while (isAttack)
         {
             // TODO ゲームプレイ中のみ攻撃する
-
             timer++;
 
             // 攻撃のための待機時間が経過したら    
             if (timer > intervalAttackTime)
             {
-
                 // 次の攻撃に備えて、待機時間のタイマーをリセット
                 timer = 0;
 
@@ -211,5 +202,4 @@ public class CharaController : MonoBehaviour
             }
         }
     }
-
 }

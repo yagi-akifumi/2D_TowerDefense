@@ -23,6 +23,7 @@ MonoBehaviour:
     intervalAttackTime: 120
     maxAttackCount: 3
     discription: "\u5E7C\u3044\u5C11\u5E74"
+    charaAnim: {fileID: 7400000, guid: 87d84884cc5c74f0ebc1d34737261d15, type: 2}
   - charaNo: 1
     cost: 200
     charaSprite: {fileID: -5540651527726495389, guid: 17485672e4e274e10a4d08764b38594b,
@@ -33,6 +34,7 @@ MonoBehaviour:
     intervalAttackTime: 200
     maxAttackCount: 2
     discription: "\u653B\u6483\u7BC4\u56F2\u306F\u72ED\u3044"
+    charaAnim: {fileID: 7400000, guid: dcda1b0ead55f476ea528e87961b69a1, type: 2}
   - charaNo: 2
     cost: 300
     charaSprite: {fileID: 4814029082027783119, guid: f00a08f0d1d764205bc6ae5fe4a5dad9,
@@ -43,6 +45,7 @@ MonoBehaviour:
     intervalAttackTime: 200
     maxAttackCount: 2
     discription: "Middle\u304C\u3067\u304D\u308B"
+    charaAnim: {fileID: 7400000, guid: 723ea508379434c58aee23f038331b72, type: 2}
   - charaNo: 3
     cost: 400
     charaSprite: {fileID: -8654730522281584288, guid: a94f22a1c74d0442a9289999cd2e4794,
@@ -53,6 +56,7 @@ MonoBehaviour:
     intervalAttackTime: 250
     maxAttackCount: 3
     discription: "\u52C7\u8005\u30C7\u30A3\u30CE"
+    charaAnim: {fileID: 7400000, guid: ee31207388ea24c8facbf1585668c9aa, type: 2}
   - charaNo: 4
     cost: 500
     charaSprite: {fileID: -867561851619585449, guid: c59d8a91a741c445aa8dfcaaf16a4667,
@@ -63,3 +67,4 @@ MonoBehaviour:
     intervalAttackTime: 100
     maxAttackCount: 5
     discription: "\u6700\u5F37\u306E\u6226\u58EB\u30A8\u30EC\u30F3"
+    charaAnim: {fileID: 7400000, guid: a581d11b72ad9402d9775debf9a025ec, type: 2}

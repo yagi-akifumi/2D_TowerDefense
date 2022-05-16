@@ -158,6 +158,7 @@ MonoBehaviour:
   generateIntervalTime: 100
   generateEnemyCount: 0
   maxEnemyCount: 10
+  currentGameState: 0
 --- !u!4 &5938795
 Transform:
   m_ObjectHideFlags: 0
@@ -4686,6 +4687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charaDataSO: {fileID: 11400000, guid: 4828ed90f83704561a9866b1380491ae, type: 2}
+  attackRangeSizeSO: {fileID: 11400000, guid: d67c7114851ee4d549857d2a60a16005, type: 2}
 --- !u!4 &1237769917
 Transform:
   m_ObjectHideFlags: 0
