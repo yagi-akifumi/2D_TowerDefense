@@ -21,6 +21,7 @@ public class CharaData
 
     public AnimationClip charaAnim;
 
+
     // TODO 他にもあれば追加
 
 
