@@ -32,7 +32,7 @@ public class CharaController : MonoBehaviour
 
     private Animator anim;
 
-    private string overrideClipName = "Chara_4"; //   　　<=  ☆　代入する文字列は自分のプロジェクトの Animationビュー の Motion に登録されている AnimationClip の名前を登録する
+    private string overrideClipName = "Chara_3"; //   　　<=  ☆　代入する文字列は自分のプロジェクトの Animationビュー の Motion に登録されている AnimationClip の名前を登録する
 
     private AnimatorOverrideController overrideController;
 
@@ -146,7 +146,10 @@ public class CharaController : MonoBehaviour
     /// <param name="gameManager"></param>
     public void SetUpChara(CharaData charaData, GameManager gameManager)
     {
-         this.gameManager = gameManager;
+        this.charaData = charaData;　　　　　　//　<=　こちらが抜けています。
+        Debug.Log(this.charaData.charaNo);
+
+        this.gameManager = gameManager;
 
         // 各値を CharaData から取得して設定
         attackPower = this.charaData.attackPower;
