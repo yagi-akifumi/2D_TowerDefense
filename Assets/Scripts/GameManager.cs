@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
 
     public GameState currentGameState;    // 現在の GameState の状態。上記の GameState の列挙子が１つだけ代入されるので、他の GameState と競合しない
 
+    [SerializeField]
+    private List<EnemyController> enemiesList = new List<EnemyController>();　　　//　敵の情報を一元化して管理するための変数。EnemyController 型で扱う
+
     void Start()
     {
 
@@ -63,11 +66,12 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 敵の情報を List に追加
     /// </summary>
-    public void AddEnemyList()
-    {
-        //　TODO　敵の情報を List に追加する際に、引数を追加
+    /// <param name="enemy"></param>
+    public void AddEnemyList(EnemyController enemy)
+    {　　　　//　☆①　敵の情報を List に追加する際に、引数を追加
 
-        //　TODO　敵の情報を List に追加
+        //　☆②　敵の情報を List に追加
+        enemiesList.Add(enemy);
 
         // 敵の生成数をカウントアップ
         generateEnemyCount++;
@@ -93,5 +97,35 @@ public class GameManager : MonoBehaviour
         currentGameState = nextGameState;
     }
 
+    /// <summary>
+    /// すべての敵の移動を一時停止
+    /// </summary>
+    public void PauseEnemies()
+    {
+        for (int i = 0; i < enemiesList.Count; i++)
+        {
+            enemiesList[i].PauseMove();
+        }
+    }
+
+    /// <summary>
+    /// すべての敵の移動を再開
+    /// </summary>
+    public void ResumeEnemies()
+    {
+        for (int i = 0; i < enemiesList.Count; i++)
+        {
+            enemiesList[i].ResumeMove();
+        }
+    }
+
+    /// <summary>
+    /// 敵の情報を List から削除
+    /// </summary>
+    /// <param name="removeEnemy"></param>
+    public void RemoveEnemyList(EnemyController removeEnemy)
+    {
+        enemiesList.Remove(removeEnemy);
+    }
 
 }

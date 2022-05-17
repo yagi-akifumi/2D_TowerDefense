@@ -94,9 +94,11 @@ public class CharaGenerator : MonoBehaviour
     public void ActivatePlacementCharaSelectPopUp()
     {
 
-        // TODO ゲームの進行状態をゲーム停止に変更
+        // ゲームの進行状態をゲーム停止に変更
+        gameManager.SetGameState(GameManager.GameState.Stop);
 
-        // TODO すべての敵の移動を一時停止
+        // すべての敵の移動を一時停止
+        gameManager.PauseEnemies();
 
         // 配置キャラ選択用のポップアップの表示
         placementCharaSelectPopUp.gameObject.SetActive(true);
@@ -112,22 +114,25 @@ public class CharaGenerator : MonoBehaviour
         // 配置キャラ選択用のポップアップの非表示
         placementCharaSelectPopUp.gameObject.SetActive(false);
 
-        // TODO ゲームオーバーやゲームクリアではない場合
+        // ゲームオーバーやゲームクリアではない場合
+        if (gameManager.currentGameState == GameManager.GameState.Stop)
+        {
 
-        // TODO ゲームの進行状態をプレイ中に変更して、ゲーム再開
+            // ゲームの進行状態をプレイ中に変更して、ゲーム再開
+            gameManager.SetGameState(GameManager.GameState.Play);
 
-        // TODO すべての敵の移動を再開
+            // すべての敵の移動を再開
+            gameManager.ResumeEnemies();
 
-        // TODO カレンシーの加算処理を再開
-
+            // TODO カレンシーの加算処理を再開
+        }
     }
 
     /// <summary>
-    /// キャラのデータをリスト化
-    /// </summary>
+        /// キャラのデータをリスト化
+        /// </summary>
     private void CreateHaveCharaDatasList()
     {
-
         // CharaDataSO スクリプタブル・オブジェクト内の CharaData を１つずつリストに追加
         // TODO スクリプタブル・オブジェクトではなく、実際にプレイヤーが所持しているキャラの番号を元にキャラのデータのリストを作成
         for (int i = 0; i < DataBaseManager.instance.charaDataSO.charaDatasList.Count; i++)

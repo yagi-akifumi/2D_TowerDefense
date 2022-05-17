@@ -4589,8 +4589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89552ec91b0e7476ead834b4f4b10edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charaPrefab: {fileID: 3984814106937793293, guid: ad61c3734471b4b518f2303fe9c7001f,
-    type: 3}
   charaControllerPrefab: {fileID: 135150325106157211, guid: ad61c3734471b4b518f2303fe9c7001f,
     type: 3}
   grid: {fileID: 1113814790}

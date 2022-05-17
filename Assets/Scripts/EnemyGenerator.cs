@@ -29,26 +29,28 @@ public class EnemyGenerator : MonoBehaviour
 
         // isEnemyGenetate が true の間はループする
         while (gameManager.isEnemyGenerate)
-        { 
-            // タイマーを加算
-            timer++;
+        {
+            if (this.gameManager.currentGameState == GameManager.GameState.Play)
+            {　　　//　<=　☆①　GameState が Play 以外では生成を一時停止
 
-            // タイマーの値が敵の生成待機時間を超えたら
-            if (timer > gameManager.generateIntervalTime)
-            {    //  ☆④　条件の右辺を変更します
+                // タイマーを加算
+                timer++;
 
-                // 次の生成のためにタイマーをリセット
-                timer = 0;
+                // タイマーの値が敵の生成待機時間を超えたら
+                if (timer > gameManager.generateIntervalTime)
+                {
 
-                // 敵の生成
-                GenerateEnemy();
+                    // 次の生成のためにタイマーをリセット
+                    timer = 0;
 
-                // 敵の生成数のカウントアップと List への追加
-                gameManager.AddEnemyList();　　　　　　　//　☆追加します
+                    //GenerateEnemy();                              //  <=  ☆②　コメントアウトします
 
-                // 最大生成数を超えたら生成停止
-                gameManager.JudgeGenerateEnemysEnd();  //　☆追加します
+                    // 敵の生成し、敵の生成数のカウントアップと List への追加
+                    gameManager.AddEnemyList(GenerateEnemy());   //　<=　☆③　引数に GenerateEnemy メソッドを設定します
 
+                    // 最大生成数を超えたら生成停止
+                    gameManager.JudgeGenerateEnemysEnd();
+                }
             }
 
             // 1フレーム中断
@@ -61,8 +63,11 @@ public class EnemyGenerator : MonoBehaviour
     /// <summary>
     /// 敵の生成
     /// </summary>
-    public void GenerateEnemy()
-    {
+    /// <param name="generateNo"></param>
+    /// <returns></returns>
+    public EnemyController GenerateEnemy(int generateNo = 0)
+    {  //　<=　☆①　戻り値を変更し、引数を追加します
+
         // ランダムな値を配列の最大要素数内で取得
         int randomValue = Random.Range(0, pathDatas.Length);　　　//　<=　☆①　処理を追加します
 
@@ -78,6 +83,8 @@ public class EnemyGenerator : MonoBehaviour
 
         // 敵の移動経路のライン表示を生成の準備
         StartCoroutine(PreparateCreatePathLine(paths, enemyController));
+
+        return enemyController;　　　//　<=　☆②　戻り値の設定をします
     }
 
     /// <summary>
