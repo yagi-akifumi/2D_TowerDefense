@@ -79,7 +79,7 @@ public class EnemyGenerator : MonoBehaviour
 
 
         // 敵キャラの初期設定を行い、移動を一時停止しておく
-        enemyController.SetUpEnemyController(paths);
+        enemyController.SetUpEnemyController(paths,gameManager);
 
         // 敵の移動経路のライン表示を生成の準備
         StartCoroutine(PreparateCreatePathLine(paths, enemyController));

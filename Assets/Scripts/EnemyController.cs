@@ -26,14 +26,16 @@ public class EnemyController : MonoBehaviour
 
     private Animator anim;　　　　　　 // Animator コンポーネントの取得用
 
+    private GameManager gameManager;
+
     public int attackPower;
 
     /// <summary>
     /// 敵の設定
     /// </summary>
-    public void SetUpEnemyController(Vector3[] pathsData)
+    public void SetUpEnemyController(Vector3[] pathsData, GameManager gameManager)
     {
-
+        this.gameManager = gameManager;　　　　//　<=　☆②　処理を追加。これで GameManager クラスが扱えるようになります。　
         hp = maxHp;
 
         // Animator コンポーネントを取得して anim 変数に代入
@@ -41,7 +43,7 @@ public class EnemyController : MonoBehaviour
 
 
         // 移動する地点を取得
-        paths = pathsData;   //  <=  ☆②　引数で必要な情報が届いているので代入処理に変更します。
+        paths = pathsData;
 
         // 各地点に向けて移動。今後この処理を制御するため、Tween 型の変数に DOPath メソッドの処理を代入しておく
         tween = transform.DOPath(paths, 1000 / moveSpeed).SetEase(Ease.Linear).OnWaypointChange(ChangeAnimeDirection);    //  <=  DOPath の処理を tween 変数に代入します
@@ -114,6 +116,10 @@ public class EnemyController : MonoBehaviour
 
 
         // TODO 破壊時のエフェクトの生成や関連する処理
+
+        // 敵を破壊した数をカウントアップする
+        // さらにこのメソッド内で、敵の情報を管理している List からこの敵の情報を削除もしてもらうために、EnemyController の情報を引数で渡している
+        gameManager.CountUpDestoryEnemyCount(this);
 
 
         // 敵キャラの破壊
