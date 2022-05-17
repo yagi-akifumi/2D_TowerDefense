@@ -23,4 +23,5 @@ public class CharaData
 
     // TODO 他にもあれば追加
 
+
 }

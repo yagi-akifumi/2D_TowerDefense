@@ -6,9 +6,6 @@ using UnityEngine.Tilemaps;　　　　//　<=　タイルマップの機能を�
 public class CharaGenerator : MonoBehaviour
 {
     [SerializeField]
-    private GameObject charaPrefab;
-
-    [SerializeField]
     private CharaController charaControllerPrefab;　　 //　<=　☆　新しく、CharaCotroller 型で変数を宣言します。アサインするプレファブは同じものです
 
     [SerializeField]
@@ -54,31 +51,15 @@ public class CharaGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// キャラ生成
-    /// </summary>
-    /// <param name="gridPos"></param>
-    private void CreateChara(Vector3Int gridPos)
-    {
-
-    // タップした位置にキャラを生成して配置
-    GameObject chara = Instantiate(charaPrefab, gridPos, Quaternion.identity);
-
-    // キャラの位置がタイルの左下を 0,0 として生成しているので、タイルの中央にくるように位置を調整
-    chara.transform.position = new Vector2(chara.transform.position.x + 0.5f, chara.transform.position.y + 0.5f);
-    }
-
-    /// <summary>
     /// 設定
     /// </summary>
     /// <param name="gameManager"></param>
     /// <returns></returns>
     public IEnumerator SetUpCharaGenerator(GameManager gameManager)
     {
-
         this.gameManager = gameManager;
 
         // TODO ステージのデータを取得
-
 
         // キャラのデータをリスト化
         CreateHaveCharaDatasList();
@@ -94,12 +75,10 @@ public class CharaGenerator : MonoBehaviour
     /// <returns></returns>
     private IEnumerator CreatePlacementCharaSelectPopUp()
     {
-
         // ポップアップを生成
         placementCharaSelectPopUp = Instantiate(placementCharaSelectPopUpPrefab, canvasTran, false);
 
-        // ポップアップの設定
-        // TODO あとでキャラ設定用の情報も渡す
+        // ポップアップの設定。あとでキャラ設定用の情報も渡す
         placementCharaSelectPopUp.SetUpPlacementCharaSelectPopUp(this,charaDatasList);
 
         // ポップアップを非表示にする
@@ -117,9 +96,7 @@ public class CharaGenerator : MonoBehaviour
 
         // TODO ゲームの進行状態をゲーム停止に変更
 
-
         // TODO すべての敵の移動を一時停止
-
 
         // 配置キャラ選択用のポップアップの表示
         placementCharaSelectPopUp.gameObject.SetActive(true);
@@ -135,15 +112,11 @@ public class CharaGenerator : MonoBehaviour
         // 配置キャラ選択用のポップアップの非表示
         placementCharaSelectPopUp.gameObject.SetActive(false);
 
-
         // TODO ゲームオーバーやゲームクリアではない場合
-
 
         // TODO ゲームの進行状態をプレイ中に変更して、ゲーム再開
 
-
         // TODO すべての敵の移動を再開
-
 
         // TODO カレンシーの加算処理を再開
 
@@ -172,7 +145,6 @@ public class CharaGenerator : MonoBehaviour
 
         // TODO コスト支払い
 
-
         // キャラをタップした位置に生成
         CharaController chara = Instantiate(charaControllerPrefab, gridPos, Quaternion.identity);
 
@@ -188,5 +160,4 @@ public class CharaGenerator : MonoBehaviour
         // TODO キャラを List に追加
 
     }
-
 }

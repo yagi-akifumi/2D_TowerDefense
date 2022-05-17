@@ -30,8 +30,6 @@ public class CharaController : MonoBehaviour
 
     private GameManager gameManager;
 
-    //private SpriteRenderer spriteRenderer;
-
     private Animator anim;
 
     private string overrideClipName = "Chara_4"; //   　　<=  ☆　代入する文字列は自分のプロジェクトの Animationビュー の Motion に登録されている AnimationClip の名前を登録する
@@ -66,6 +64,7 @@ public class CharaController : MonoBehaviour
     /// <returns></returns>
     public IEnumerator PrepareteAttack()
     {
+
         Debug.Log("攻撃準備開始");
 
         int timer = 0;
@@ -73,12 +72,15 @@ public class CharaController : MonoBehaviour
         // 攻撃中の間だけループ処理を繰り返す
         while (isAttack)
         {
+
             // TODO ゲームプレイ中のみ攻撃する
+
             timer++;
 
             // 攻撃のための待機時間が経過したら    
             if (timer > intervalAttackTime)
             {
+
                 // 次の攻撃に備えて、待機時間のタイマーをリセット
                 timer = 0;
 
@@ -88,17 +90,15 @@ public class CharaController : MonoBehaviour
                 // 攻撃回数関連の処理をここに記述する            
                 attackCount--;
 
-                // 残り攻撃回数の表示更新
-                UpdateDisplayAttackCount();
-
-
                 // 攻撃回数がなくなったら
                 if (attackCount <= 0)
                 {
+
                     // キャラ破壊
                     Destroy(gameObject);
                 }
             }
+
             // １フレーム処理を中断する(この処理を書き忘れると無限ループになり、Unity エディターが動かなくなって再起動することになります。注意！)
             yield return null;
         }
@@ -109,8 +109,12 @@ public class CharaController : MonoBehaviour
     /// </summary>
     private void Attack()
     {
+
         Debug.Log("攻撃");
+
         // TODO キャラの上に攻撃エフェクトを生成
+
+
         // 敵キャラ側に用意したダメージ計算用のメソッドを呼び出して、敵にダメージを与える
         enemy.CulcDamage(attackPower);
     }
@@ -119,6 +123,7 @@ public class CharaController : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
+
             Debug.Log("敵なし");
 
             isAttack = false;
@@ -141,9 +146,7 @@ public class CharaController : MonoBehaviour
     /// <param name="gameManager"></param>
     public void SetUpChara(CharaData charaData, GameManager gameManager)
     {
-
-        this.charaData = charaData;
-        this.gameManager = gameManager;
+         this.gameManager = gameManager;
 
         // 各値を CharaData から取得して設定
         attackPower = this.charaData.attackPower;
@@ -152,22 +155,14 @@ public class CharaController : MonoBehaviour
 
         // DataBaseManager に登録されている AttackRangeSizeSO スクリプタブル・オブジェクトのデータと照合を行い、CharaData の AttackRangeType の情報を元に Size を設定
         attackRangeArea.size = DataBaseManager.instance.GetAttackRangeSize(this.charaData.attackRange);
-
         attackCount = this.charaData.maxAttackCount;
 
         // 残りの攻撃回数の表示更新
         UpdateDisplayAttackCount();
 
-        // キャラ画像の設定。アニメを利用するようになったら、この処理はやらない
-        //if (TryGetComponent(out spriteRenderer))
-        //{
-
-        // 画像を配置したキャラの画像に差し替える
-        //spriteRenderer.sprite = this.charaData.charaSprite;
-        //}
-
-        // TODO キャラごとの AnimationClip を設定
+        // キャラごとの AnimationClip を設定
         SetUpAnimation();
+
     }
 
     /// <summary>
@@ -177,7 +172,6 @@ public class CharaController : MonoBehaviour
     {
         if (TryGetComponent(out anim))
         {
-
             overrideController = new AnimatorOverrideController();
 
             overrideController.runtimeAnimatorController = anim.runtimeAnimatorController;
@@ -202,4 +196,6 @@ public class CharaController : MonoBehaviour
             }
         }
     }
+
+
 }
