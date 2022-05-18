@@ -4594,6 +4594,21 @@ PrefabInstance:
       propertyPath: m_Text
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1617132169824953114, guid: 346fb2c14410e4a95b58db299acd2fb0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617132169824953114, guid: 346fb2c14410e4a95b58db299acd2fb0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617132169824953114, guid: 346fb2c14410e4a95b58db299acd2fb0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7183236263668142072, guid: 346fb2c14410e4a95b58db299acd2fb0,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4892,6 +4907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charaDataSO: {fileID: 11400000, guid: 4828ed90f83704561a9866b1380491ae, type: 2}
   attackRangeSizeSO: {fileID: 11400000, guid: d67c7114851ee4d549857d2a60a16005, type: 2}
+  enemyDataSO: {fileID: 11400000, guid: 2b620228177e848bd97390c2b8c1a9cf, type: 2}
 --- !u!4 &1237769917
 Transform:
   m_ObjectHideFlags: 0
@@ -5717,7 +5733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.7372549}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5824,6 +5840,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Currency
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617132169824953114, guid: 346fb2c14410e4a95b58db299acd2fb0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617132169824953114, guid: 346fb2c14410e4a95b58db299acd2fb0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617132169824953114, guid: 346fb2c14410e4a95b58db299acd2fb0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7183236263668142072, guid: 346fb2c14410e4a95b58db299acd2fb0,
         type: 3}

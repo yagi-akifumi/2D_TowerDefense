@@ -77,9 +77,12 @@ public class EnemyGenerator : MonoBehaviour
         // 移動する地点を取得
         Vector3[] paths = pathDatas[randomValue].pathTranArray.Select(x => x.position).ToArray();
 
+        // 敵の種類をランダムに決定
+        int enemyNo = Random.Range(0, DataBaseManager.instance.enemyDataSO.enemyDatasList.Count);
+
 
         // 敵キャラの初期設定を行い、移動を一時停止しておく
-        enemyController.SetUpEnemyController(paths,gameManager);
+        enemyController.SetUpEnemyController(paths,gameManager,DataBaseManager.instance.enemyDataSO.enemyDatasList[enemyNo]);
 
         // 敵の移動経路のライン表示を生成の準備
         StartCoroutine(PreparateCreatePathLine(paths, enemyController));
