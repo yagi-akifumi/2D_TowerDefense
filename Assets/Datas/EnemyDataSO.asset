@@ -17,20 +17,20 @@ MonoBehaviour:
     enemyNo: 0
     hp: 1
     attackPower: 1
-    moveSpeed: 200
+    moveSpeed: 30
     enemyType: 0
     itemDropRate: 0
   - enemyName: Yan
     enemyNo: 1
     hp: 2
     attackPower: 2
-    moveSpeed: 200
+    moveSpeed: 30
     enemyType: 0
     itemDropRate: 0
   - enemyName: Wix
     enemyNo: 2
     hp: 3
     attackPower: 1
-    moveSpeed: 300
+    moveSpeed: 30
     enemyType: 2
     itemDropRate: 0

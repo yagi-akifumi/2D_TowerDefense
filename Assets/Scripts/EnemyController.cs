@@ -37,30 +37,30 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     public void SetUpEnemyController(Vector3[] pathsData, GameManager gameManager, EnemyDataSO.EnemyData enemyData)
     {
-    //    // 引数で届いた EnemyData の情報を代入して利用できる状態にする
+        //    引数で届いた EnemyData の情報を代入して利用できる状態にする
         this.enemyData = enemyData;
 
-    // 各数値を EnemyData の情報の値に書き換える
-    moveSpeed = this.enemyData.moveSpeed;
+        // 各数値を EnemyData の情報の値に書き換える
+        moveSpeed = this.enemyData.moveSpeed;
 
-    attackPower = this.enemyData.attackPower;
+        attackPower = this.enemyData.attackPower;
 
-    maxHp = this.enemyData.hp;
+        maxHp = this.enemyData.hp;
 
-    //    this.gameManager = gameManager;　　　　//　<=　☆②　処理を追加。これで GameManager クラスが扱えるようになります。　
+        this.gameManager = gameManager;    //　<=　☆②　処理を追加。これで GameManager クラスが扱えるようになります。　
         hp = maxHp;
 
-    // Animator コンポーネントを取得して anim 変数に代入
+        // Animator コンポーネントを取得して anim 変数に代入
         TryGetComponent(out anim);
 
 
-    // 移動する地点を取得
+        // 移動する地点を取得
         paths = pathsData;
 
-    // 各地点に向けて移動。今後この処理を制御するため、Tween 型の変数に DOPath メソッドの処理を代入しておく
+        // 各地点に向けて移動。今後この処理を制御するため、Tween 型の変数に DOPath メソッドの処理を代入しておく
         tween = transform.DOPath(paths, 1000 / moveSpeed).SetEase(Ease.Linear).OnWaypointChange(ChangeAnimeDirection);    //  <=  DOPath の処理を tween 変数に代入します
 
-    // 移動を一時停止
+        // 移動を一時停止
         PauseMove();
 
     }

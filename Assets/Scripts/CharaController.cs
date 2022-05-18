@@ -91,6 +91,8 @@ public class CharaController : MonoBehaviour
 
                     // 攻撃回数関連の処理をここに記述する            
                     attackCount--;
+                    UpdateDisplayAttackCount();
+                    Debug.Log(attackCount);
 
                     // 攻撃回数がなくなったら
                     if (attackCount <= 0)

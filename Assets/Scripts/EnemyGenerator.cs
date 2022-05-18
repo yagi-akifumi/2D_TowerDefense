@@ -101,6 +101,9 @@ public class EnemyGenerator : MonoBehaviour
         // ラインの生成と削除。この処理が終了するまでは、この処理より下の処理は実行されない
         yield return StartCoroutine(CreatePathLine(paths));
 
+        // GameManager.GameState.Playになるまで中断する。
+        yield return new WaitUntil(() => gameManager.currentGameState == GameManager.GameState.Play);
+
         // 敵の移動を再開
         enemyController.ResumeMove();
     }
