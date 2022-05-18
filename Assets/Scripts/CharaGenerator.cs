@@ -32,7 +32,11 @@ public class CharaGenerator : MonoBehaviour
 
     void Update()
     {
-        // TODO 配置できる最大キャラ数に達している場合には配置できない
+        // 配置できる最大キャラ数に達している場合には配置できない
+        if (gameManager.GetPlacementCharaCount() >= GameData.instance.maxCharaPlacementCount)
+        {
+            return;
+        }
 
         // 画面をタップ(マウスクリック)したら
         if (Input.GetMouseButtonDown(0) && !placementCharaSelectPopUp.gameObject.activeSelf && gameManager.currentGameState == GameManager.GameState.Play)
@@ -124,7 +128,8 @@ public class CharaGenerator : MonoBehaviour
             // すべての敵の移動を再開
             gameManager.ResumeEnemies();
 
-            // TODO カレンシーの加算処理を再開
+            // カレンシーの加算処理を再開
+            StartCoroutine(gameManager.TimeToCurrency());
         }
     }
 
@@ -148,7 +153,8 @@ public class CharaGenerator : MonoBehaviour
     public void CreateChooseChara(CharaData charaData)
     {
 
-        // TODO コスト支払い
+        // コスト支払い
+        GameData.instance.currency -= charaData.cost;
 
         // キャラをタップした位置に生成
         CharaController chara = Instantiate(charaControllerPrefab, gridPos, Quaternion.identity);
@@ -162,7 +168,8 @@ public class CharaGenerator : MonoBehaviour
         Debug.Log(charaData.charaName);   // 選択しているキャラのデータがとどいているかを確認するためのログ表示
 
 
-        // TODO キャラを List に追加
+        // キャラを List に追加
+        gameManager.AddCharasList(chara);
 
     }
 }

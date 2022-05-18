@@ -18,6 +18,8 @@ public class GameData : MonoBehaviour
     [Header("加算値")]
     public int addCurrencyPoint;
 
+    [Header("配置できるキャラの上限値")]
+    public int maxCharaPlacementCount;　　 // 配置できるキャラの上限数
 
     void Awake()
     {
