@@ -73,29 +73,35 @@ public class CharaController : MonoBehaviour
         while (isAttack)
         {
 
-            // TODO ゲームプレイ中のみ攻撃する
 
-            timer++;
-
-            // 攻撃のための待機時間が経過したら    
-            if (timer > intervalAttackTime)
+            // ゲームプレイ中のみ攻撃する
+            if (gameManager.currentGameState == GameManager.GameState.Play)
             {
+                timer++;
 
-                // 次の攻撃に備えて、待機時間のタイマーをリセット
-                timer = 0;
-
-                // 攻撃
-                Attack();
-
-                // 攻撃回数関連の処理をここに記述する            
-                attackCount--;
-
-                // 攻撃回数がなくなったら
-                if (attackCount <= 0)
+                // 攻撃のための待機時間が経過したら    
+                if (timer > intervalAttackTime)
                 {
 
-                    // キャラ破壊
-                    Destroy(gameObject);
+                    // 次の攻撃に備えて、待機時間のタイマーをリセット
+                    timer = 0;
+
+                    // 攻撃
+                    Attack();
+
+                    // 攻撃回数関連の処理をここに記述する            
+                    attackCount--;
+
+                    // 攻撃回数がなくなったら
+                    if (attackCount <= 0)
+                    {
+
+                        // キャラ破壊
+                        Destroy(gameObject);
+
+                        // キャラのリストから情報を削除
+                        gameManager.RemoveCharasList(this);
+                    }
                 }
             }
 
@@ -113,7 +119,6 @@ public class CharaController : MonoBehaviour
         Debug.Log("攻撃");
 
         // TODO キャラの上に攻撃エフェクトを生成
-
 
         // 敵キャラ側に用意したダメージ計算用のメソッドを呼び出して、敵にダメージを与える
         enemy.CulcDamage(attackPower);
@@ -199,6 +204,4 @@ public class CharaController : MonoBehaviour
             }
         }
     }
-
-
 }
