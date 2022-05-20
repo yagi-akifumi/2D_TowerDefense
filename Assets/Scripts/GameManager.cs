@@ -228,5 +228,46 @@ public class GameManager : MonoBehaviour
         return charasList.Count;
     }
 
+    /// <summary>
+    /// 配置解除を選択するポップアップ作成の準備(CharaController から呼び出される)
+    /// </summary>
+    /// <param name="chara"></param>
+    public void PreparateCreateReturnCharaPopUp(CharaController chara)
+    {
 
+        // ゲームの進行状態をゲーム停止に変更
+        SetGameState(GameState.Stop);
+
+        // すべての敵の移動を一時停止
+        PauseEnemies();
+
+        // 配置解除を選択するポップアップを作成
+        uiManager.CreateReturnCharaPopUp(chara, this);
+    }
+
+    /// <summary>
+    /// 選択したキャラの配置解除の確認(ReturnSelectCharaPopUp から呼び出される)
+    /// </summary>
+    /// <param name="isReturnChara"></param>
+    /// <param name="chara"></param>
+    public void JudgeReturnChara(bool isReturnChara, CharaController chara)
+    {
+
+        // キャラの配置を解除する場合
+        if (isReturnChara)
+        {
+
+            // 選択したキャラを破棄し、情報を List から削除
+            RemoveCharasList(chara);
+        }
+
+        //  ゲームの進行状態をプレイ中に変更して、ゲーム再開
+        SetGameState(GameState.Play);
+
+        // すべての敵の移動を再開
+        ResumeEnemies();
+
+        // カレンシーの加算処理を再開
+        StartCoroutine(TimeToCurrency());
+    }
 }
