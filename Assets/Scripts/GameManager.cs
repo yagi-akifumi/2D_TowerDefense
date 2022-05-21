@@ -34,13 +34,24 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<EnemyController> enemiesList = new List<EnemyController>();　　　//　敵の情報を一元化して管理するための変数。EnemyController 型で扱う
 
-    [SerializeField]
     private int destroyEnemyCount;                //  敵を破壊した数のカウント用
 
     public UIManager uiManager;
 
     [SerializeField]
-    private List<CharaController> charasList = new List<CharaController>();　　　 // 配置したキャラの情報を一元化して管理するための変数。CharaController 型で扱う
+    private List<CharaController> charasList = new List<CharaController>();    // 配置したキャラの情報を一元化して管理するための変数。CharaController 型で扱う
+
+    [SerializeField]
+    private DefenseBase defenseBase;          // 生成した防衛拠点の情報を代入するための変数
+
+    [SerializeField]　　　　　　　　　　　　　// デバッグのために SerializeField 属性を利用してインスペクターで確認できるようにしている
+    private MapInfo currentMapInfo;　　　　　 // 生成したステージのゲームオブジェクト(MapInfo クラスのアタッチされている MainMap ゲームオブジェクト)を代入するための変数
+
+    [SerializeField]
+    private DefenseBase defenseBasePrefab;　　// 防衛拠点のプレファブをアサインするための変数
+
+    [SerializeField]
+    private StageData currentStageData;    // 今回のバトルで使用するステージのデータ情報
 
     void Start()
     {
@@ -50,12 +61,14 @@ public class GameManager : MonoBehaviour
 
         // TODO ゲームデータを初期化
 
-        // TODO ステージの設定 + ステージごとの PathData を設定
+        // ステージの設定 + ステージごとの PathData を設定
+        SetUpStageData();
 
         // キャラ配置用ポップアップの生成と設定
         StartCoroutine(charaGenerator.SetUpCharaGenerator(this));
 
         // TODO 拠点の設定
+        defenseBase.SetUpDefenseBase(this, currentStageData.defenseBaseDurability, uiManager);
 
         // TODO オープニング演出再生
 
@@ -65,7 +78,7 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.Play);
 
         // 敵の生成準備開始
-        StartCoroutine(enemyGenerator.PreparateEnemyGenerate(this));
+        StartCoroutine(enemyGenerator.PreparateEnemyGenerate(this, currentStageData));　　//　<=　第２引数を追加
 
         // カレンシーの自動獲得処理の開始
         StartCoroutine(TimeToCurrency());
@@ -269,5 +282,36 @@ public class GameManager : MonoBehaviour
 
         // カレンシーの加算処理を再開
         StartCoroutine(TimeToCurrency());
+    }
+
+    /// <summary>
+    /// ステージデータの設定
+    /// </summary>
+    private void SetUpStageData()
+    {
+
+        // GameData の stageNo から StageData を取得
+        currentStageData = DataBaseManager.instance.stageDataSO.stageDatasList[GameData.instance.stageNo];
+
+        // 各情報を StageData クラスを参照して設定
+        generateIntervalTime = currentStageData.generateIntervalTime;
+        maxEnemyCount = currentStageData.mapInfo.appearEnemyInfos.Length;
+
+        // ステージ用のマップと防衛拠点の生成
+        currentMapInfo = Instantiate(currentStageData.mapInfo);
+        defenseBase = Instantiate(defenseBasePrefab, currentMapInfo.GetDefenseBaseTran());
+
+        // PathDatas の移動経路情報を StageData クラスを参照して設定
+        PathData[] pathDatas = new PathData[currentStageData.mapInfo.appearEnemyInfos.Length];
+        for (int i = 0; i < currentStageData.mapInfo.appearEnemyInfos.Length; i++)
+        {
+            pathDatas[i] = currentStageData.mapInfo.appearEnemyInfos[i].enemyPathData;
+        }
+
+        // 移動経路の情報を引数で渡して、EnemyGenerator クラスの設定を行う
+        enemyGenerator.SetUpPathDatas(pathDatas);
+
+        // TODO 他にもあれば追加
+
     }
 }
