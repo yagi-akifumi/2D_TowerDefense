@@ -26,6 +26,8 @@ public class GameData : MonoBehaviour
 
     public int defenseBaseDurability;
 
+    public int stageNo;
+
     void Awake()
     {
         if (instance == null)
