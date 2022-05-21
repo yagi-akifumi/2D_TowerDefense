@@ -20,6 +20,8 @@ MonoBehaviour:
     moveSpeed: 30
     enemyType: 0
     itemDropRate: 0
+    enemyOverrideController: {fileID: 22100000, guid: 93de6530e5d294b13a003da3131f4f1a,
+      type: 2}
   - enemyName: Yan
     enemyNo: 1
     hp: 2
@@ -27,6 +29,8 @@ MonoBehaviour:
     moveSpeed: 30
     enemyType: 0
     itemDropRate: 0
+    enemyOverrideController: {fileID: 22100000, guid: 77d0326b30b2c4761a12d5050bf92b4e,
+      type: 2}
   - enemyName: Wix
     enemyNo: 2
     hp: 3
@@ -34,3 +38,5 @@ MonoBehaviour:
     moveSpeed: 30
     enemyType: 2
     itemDropRate: 0
+    enemyOverrideController: {fileID: 22100000, guid: 92ddf481cd502474ab54d927e7d67a3f,
+      type: 2}
