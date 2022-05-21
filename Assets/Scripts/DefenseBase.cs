@@ -9,7 +9,7 @@ public class DefenseBase : MonoBehaviour
 
     private int defenseBaseDurability;      // 耐久力の現在値
 
-
+    // Start is called before the first frame update
     void Start()
     {
         // 耐久力の最大値を決定する
@@ -24,16 +24,11 @@ public class DefenseBase : MonoBehaviour
             // デバッグモードを適用していない場合には、このクラス内での設定値を利用する
             maxDefenseBaseDurability = defenseBaseDurability;
         }
-
-
-
         // 耐久力の初期値の設定
         defenseBaseDurability = maxDefenseBaseDurability;
     }
 
-
     // TODO 設定用のメソッドの作成。作成後は Start メソッドを削除
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
