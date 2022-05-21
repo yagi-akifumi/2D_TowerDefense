@@ -113,12 +113,14 @@ public class EnemyController : MonoBehaviour
             DestroyEnemy();
         }
 
-        // TODO 演出用のエフェクト生成
+        else
+        {
+            // 演出用のエフェクト生成
+            CreateHitEffect();
 
-
-        // ヒットストップ演出
-        StartCoroutine(WaitMove());
-
+            // ヒットストップ演出
+            StartCoroutine(WaitMove());
+        }
     }
 
     /// <summary>
@@ -133,7 +135,9 @@ public class EnemyController : MonoBehaviour
         // TODO SEの処理
 
 
-        // TODO 破壊時のエフェクトの生成や関連する処理
+        // 破壊時のエフェクトの生成や関連する処理
+        GameObject effect = Instantiate(BattleEffectManager.instance.GetEffect(EffectType.Destroy_Enemy), transform.position, Quaternion.identity);
+        Destroy(effect, 1.5f);
 
         // 敵を破壊した数をカウントアップする
         // さらにこのメソッド内で、敵の情報を管理している List からこの敵の情報を削除もしてもらうために、EnemyController の情報を引数で渡している
@@ -188,4 +192,18 @@ public class EnemyController : MonoBehaviour
             anim.runtimeAnimatorController = enemyData.enemyOverrideController;
         }
     }
+
+    /// <summary>
+    /// ヒットエフェクト生成
+    /// </summary>
+    private void CreateHitEffect()
+    {
+        // TODO SE
+
+        // 被ダメージ時のヒットエフェクト生成
+        GameObject effect = Instantiate(BattleEffectManager.instance.GetEffect(EffectType.Hit_Enemy), transform.position, Quaternion.identity);
+        // エフェクトを破壊
+        Destroy(effect, 1.5f);
+    }
+
 }

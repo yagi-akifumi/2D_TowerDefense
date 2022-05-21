@@ -47,7 +47,8 @@ public class DefenseBase : MonoBehaviour
             // 敵キャラの攻撃力分だけ耐久力を減算し、耐久力の値の下限と上限内に収まるように制御した上で更新
             defenseBaseDurability = Mathf.Clamp(defenseBaseDurability - enemyController.attackPower, 0, maxDefenseBaseDurability);
 
-            // TODO ダメージ演出生成
+            // ダメージ演出生成
+            CreateDamageEffect();
 
             // TODO ゲーム画面に耐久力の表示がある場合、その表示を更新
 
@@ -63,5 +64,16 @@ public class DefenseBase : MonoBehaviour
     }
 
     // TODOダメージ演出生成用のメソッドの作成
+
+    /// <summary>
+    /// ダメージ演出生成
+    /// </summary>
+    private void CreateDamageEffect()
+    {
+
+        GameObject effect = Instantiate(BattleEffectManager.instance.GetEffect(EffectType.Hit_DefenseBase), transform.position, Quaternion.identity);
+
+        Destroy(effect, 1.5f);
+    }
 
 }
