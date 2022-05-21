@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 2388518303447221530}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fa85f692b601940218371b0d570c3832, type: 2}
+  m_Controller: {fileID: 9100000, guid: fccf1a91240414463abf5cde5d331c5a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -122,6 +122,15 @@ MonoBehaviour:
   moveSpeed: 30
   maxHp: 1
   hp: 0
+  attackPower: 0
+  enemyData:
+    enemyName: 
+    enemyNo: 0
+    hp: 0
+    attackPower: 0
+    moveSpeed: 0
+    enemyType: 0
+    itemDropRate: 0
 --- !u!61 &1904861920759643137
 BoxCollider2D:
   m_ObjectHideFlags: 0

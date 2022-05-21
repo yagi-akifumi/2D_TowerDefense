@@ -19,7 +19,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private int hp;
 
-
     private Tween tween;
 
     private Vector3[] paths;
@@ -51,8 +50,10 @@ public class EnemyController : MonoBehaviour
         hp = maxHp;
 
         // Animator コンポーネントを取得して anim 変数に代入
-        TryGetComponent(out anim);
-
+        if(TryGetComponent(out anim))
+        {
+            SetUpAnimation();
+        }
 
         // 移動する地点を取得
         paths = pathsData;
@@ -173,4 +174,18 @@ public class EnemyController : MonoBehaviour
         tween.timeScale = 1.0f;
     }
 
+    /// <summary>
+    /// AnimatorController を AnimatorOverrideController を利用して変更
+    /// </summary>
+    private void SetUpAnimation()
+    {
+
+        // このエネミーの EnemyData 内にアニメーション用のデータがあるか確認する
+        if (enemyData.enemyOverrideController != null)
+        {
+
+            // アニメーションのデータがある場合には、アニメーションを上書きする
+            anim.runtimeAnimatorController = enemyData.enemyOverrideController;
+        }
+    }
 }

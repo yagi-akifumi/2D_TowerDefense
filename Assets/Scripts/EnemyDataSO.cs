@@ -21,6 +21,8 @@ public class EnemyDataSO : ScriptableObject
         [Header("アイテムドロップ率")]
         public int itemDropRate;
 
+        public AnimatorOverrideController enemyOverrideController;　　// エネミーの移動アニメーション
+
         // TODO 他にもあれば追加
 
     }

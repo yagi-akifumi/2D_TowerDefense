@@ -67,7 +67,7 @@ public class ReturnSelectCharaPopUp : MonoBehaviour
     {
         canvasGroup.DOFade(0, 0.5f).SetEase(Ease.Linear)
             .OnComplete(() => {
-                //gameManager.JudgeReturnChara(isReturnChara, charaController);
+                gameManager.JudgeReturnChara(isReturnChara, charaController);
                 DestroyReturnSelectCharaPopUp();
             });
     }
