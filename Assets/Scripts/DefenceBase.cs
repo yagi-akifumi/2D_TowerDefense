@@ -12,6 +12,21 @@ public class DefenseBase : MonoBehaviour
 
     void Start()
     {
+        // 耐久力の最大値を決定する
+        // デバッグモードを適用している場合
+        if (GameData.instance.isDebug)
+        {
+            // GameData に設定している defenseBaseDurability を利用する
+            maxDefenseBaseDurability = GameData.instance.defenseBaseDurability;
+        }
+        else
+        {
+            // デバッグモードを適用していない場合には、このクラス内での設定値を利用する
+            maxDefenseBaseDurability = defenseBaseDurability;
+        }
+
+
+
         // 耐久力の初期値の設定
         defenseBaseDurability = maxDefenseBaseDurability;
     }

@@ -21,6 +21,11 @@ public class GameData : MonoBehaviour
     [Header("配置できるキャラの上限値")]
     public int maxCharaPlacementCount;　　 // 配置できるキャラの上限数
 
+    [Header("デバッグモードの切り替え")]
+    public bool isDebug;　　　　　　　　　// true の場合、デバッグモードとする
+
+    public int defenseBaseDurability;
+
     void Awake()
     {
         if (instance == null)
