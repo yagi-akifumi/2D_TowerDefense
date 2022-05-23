@@ -98,7 +98,7 @@ public class CharaController : MonoBehaviour
                     if (attackCount <= 0)
                     {
                         // キャラを破壊
-                        DestroyChara();　　　 　　　//　☆　追加
+                        DestroyChara();
 
                         // キャラ破壊
                         //Destroy(gameObject);

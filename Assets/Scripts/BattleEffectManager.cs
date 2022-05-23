@@ -14,7 +14,6 @@ public class BattleEffectManager : MonoBehaviour
     // 拠点用
     public GameObject hitDefenseBaseEffectPrefab;
 
-
     void Awake()
     {
         if (instance == null)
