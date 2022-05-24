@@ -27,6 +27,27 @@ public class SceneStateManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 引数で指定したシーンへのシーン遷移の準備
+    /// シーン遷移を実行する場合は、このメソッドを利用する
+    /// </summary>
+    /// <param name="nextSceneType"></param>
+    public void PreparateNextScene(SceneType nextSceneType)
+    {
+
+        // FadeCanvas の情報があるかないかを判断して、トランジションの機能を使うか、使わないかを切り替える
+        if (!fade)
+        {
+            // FadeCanvas の情報がない場合、いままでと同じようにすぐにシーン遷移
+            StartCoroutine(LoadNextScene(nextSceneType));
+        }
+        else
+        {
+            // FadeCanvas の情報がある場合、fadeDuration 変数秒の時間をかけてフェードインの処理を行ってから、引数で指定したシーンへ遷移
+            fade.FadeIn(fadeDuration, () => { StartCoroutine(LoadNextScene(nextSceneType)); });
+        }
+    }
+
+    /// <summary>
     /// 引数で指定したシーンへ遷移
     /// </summary>
     /// <param name="nextLoadSceneName"></param>

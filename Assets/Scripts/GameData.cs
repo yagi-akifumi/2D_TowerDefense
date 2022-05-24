@@ -28,6 +28,16 @@ public class GameData : MonoBehaviour
 
     public int stageNo;
 
+    public int totalClearPoint;　　　　　　　　　　　　　　　　　　// バトルクリア時にもらえるポイント。消費してキャラと契約できる
+
+    [Header("契約して所持しているキャラの番号")]
+    public List<int> engageCharaNosList = new List<int>();
+
+    [Header("表示するステージの番号")]
+    public List<int> clearedStageNosList = new List<int>();
+
+
+
     void Awake()
     {
         if (instance == null)
