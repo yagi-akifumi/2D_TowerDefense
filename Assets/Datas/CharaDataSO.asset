@@ -58,13 +58,13 @@ MonoBehaviour:
     discription: "\u52C7\u8005\u30C7\u30A3\u30CE"
     charaAnim: {fileID: 7400000, guid: 53218f56e0bf14f74b381d0328178253, type: 2}
   - charaNo: 4
-    cost: 500
+    cost: 10
     charaSprite: {fileID: -867561851619585449, guid: c59d8a91a741c445aa8dfcaaf16a4667,
       type: 3}
     charaName: Elen
     attackPower: 5
     attackRange: 2
-    intervalAttackTime: 100
+    intervalAttackTime: 10
     maxAttackCount: 5
     discription: "\u6700\u5F37\u306E\u6226\u58EB\u30A8\u30EC\u30F3"
     charaAnim: {fileID: 7400000, guid: 536857eed5db043509db10eea40b20f3, type: 2}

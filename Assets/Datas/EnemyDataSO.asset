@@ -17,7 +17,7 @@ MonoBehaviour:
     enemyNo: 0
     hp: 1
     attackPower: 1
-    moveSpeed: 30
+    moveSpeed: 10
     enemyType: 0
     itemDropRate: 0
     enemyOverrideController: {fileID: 22100000, guid: 93de6530e5d294b13a003da3131f4f1a,
@@ -26,7 +26,7 @@ MonoBehaviour:
     enemyNo: 1
     hp: 2
     attackPower: 2
-    moveSpeed: 30
+    moveSpeed: 10
     enemyType: 0
     itemDropRate: 0
     enemyOverrideController: {fileID: 22100000, guid: 77d0326b30b2c4761a12d5050bf92b4e,
@@ -35,7 +35,7 @@ MonoBehaviour:
     enemyNo: 2
     hp: 3
     attackPower: 1
-    moveSpeed: 30
+    moveSpeed: 10
     enemyType: 2
     itemDropRate: 0
     enemyOverrideController: {fileID: 22100000, guid: 92ddf481cd502474ab54d927e7d67a3f,

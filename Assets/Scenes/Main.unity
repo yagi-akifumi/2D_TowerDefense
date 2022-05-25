@@ -157,7 +157,7 @@ MonoBehaviour:
   isEnemyGenerate: 0
   generateIntervalTime: 100
   generateEnemyCount: 0
-  maxEnemyCount: 10
+  maxEnemyCount: 1
   currentGameState: 0
   enemiesList: []
   uiManager: {fileID: 186354810}
@@ -1273,6 +1273,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameData
+      objectReference: {fileID: 0}
+    - target: {fileID: 123865383808607670, guid: 6fa23fadc16794324b8be13bb97bfbda,
+        type: 3}
+      propertyPath: isDebug
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 123865383808607671, guid: 6fa23fadc16794324b8be13bb97bfbda,
         type: 3}

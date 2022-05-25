@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.Preparate);
 
         // ゲームデータを初期化
-        RefreshGameData()
+        RefreshGameData();
 
         // ステージの設定 + ステージごとの PathData を設定
         SetUpStageData();
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
 
         // カレンシーの自動獲得処理の開始
         StartCoroutine(TimeToCurrency());
-
+        yield return null;
     }
 
     /// <summary>
@@ -292,14 +292,17 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void SetUpStageData()
     {
-
         // GameData の stageNo から StageData を取得
         currentStageData = DataBaseManager.instance.stageDataSO.stageDatasList[GameData.instance.stageNo];
 
         // 各情報を StageData クラスを参照して設定
         generateIntervalTime = currentStageData.generateIntervalTime;
-        maxEnemyCount = currentStageData.mapInfo.appearEnemyInfos.Length;
 
+        // isDebug　true => maxEnemyCountをappearEnemyInfosを通さない。
+        if (!GameData.instance.isDebug)
+        {
+            maxEnemyCount = currentStageData.mapInfo.appearEnemyInfos.Length;
+        }
         // ステージ用のマップと防衛拠点の生成
         currentMapInfo = Instantiate(currentStageData.mapInfo);
         defenseBase = Instantiate(defenseBasePrefab, currentMapInfo.GetDefenseBaseTran());
@@ -315,7 +318,6 @@ public class GameManager : MonoBehaviour
         enemyGenerator.SetUpPathDatas(pathDatas);
 
         // TODO 他にもあれば追加
-
     }
 
     /// <summary>
@@ -349,6 +351,8 @@ public class GameManager : MonoBehaviour
 
         // シーン遷移
         SceneStateManager.instance.PreparateNextScene(SceneType.Main);
+
+        yield return null;
     }
 
     /// <summary>
