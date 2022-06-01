@@ -5,60 +5,128 @@ using UnityEngine;
 public class ContractSetGenerator : MonoBehaviour
 {
 
-    [SerializeField]
+    [SerializeField, Header("コントラクトセット")]
     private GameObject ContractSet;
+
+    [SerializeField, Header("キャラセット")]
+    private GameObject CharaSet;
+
+    [SerializeField, Header("スタンプセット")]
+    private GameObject StampSet;
 
     [SerializeField]
     private Transform canvasTran;
 
-    [SerializeField,Header("管理画面の表示")]
+    [SerializeField, Header("キャラセットの表示")]
+    private bool CharaSetPopUp;
+
+    [SerializeField, Header("管理画面の表示")]
     private bool ContractSetPreview;
 
-    [SerializeField,Header("スタンプの表示")]
+    [SerializeField, Header("スタンプの表示")]
     private bool StampPreview;
 
     void start()
     {
+        CharaSetPopUp = false;
         ContractSetPreview = false;
         StampPreview = false;
     }
 
     void Update()
     {
+
+
         if (Input.GetMouseButtonDown(0))
         {
-            if (ContractSetPreview == false)
+            if (CharaSetPopUp == false)
             {
-                ActivateContractSet();
+                ActivateCharaSetPopUp();
+                CharaSetPopUp = true;
             }
-
             else
-            if(ContractSetPreview == true)
             {
-                InactivateContractSet();
+                InactivateCharaSetPopUp();
+                CharaSetPopUp = false;
             }
         }
-    }
 
+        if (CharaSetPopUp == true)
+        {
+            if (Input.GetKey("up"))
+            {
+                if (ContractSetPreview == false)
+                {
+                    ActivateContractSet();
+                    ContractSetPreview = true;
+                }
+                else
+                {
+                    InactivateContractSet();
+                    ContractSetPreview = false;
+                }
+            }
+
+            //if (Input.GetMouseButtonDown(0) && ContractSetPreview == false && CharaSetPopUp == true)
+            //{
+            //if (ContractSetPreview == false)
+            //{
+            //ActivateContractSet();
+            //}
+            //else
+            //{
+            // InactivateContractSet();
+            //}
+        }
+
+    }
     /// <summary>
     /// 表示
     /// </summary>
-    public void ActivateContractSet()
+    private void ActivateCharaSetPopUp()
     {
-        // ポップアップを生成
-        Debug.Log("ゲーム表示");
-        // コントラクトセットをキャンバスにインスタンス化する
-        ContractSet = Instantiate(ContractSet, canvasTran, false);
+        // キャラセットのポップアップを生成
+        Debug.Log("キャラセットの表示");
+        // キャラセットをキャンバスにインスタンス化する
+        CharaSet = Instantiate(CharaSet, canvasTran, false);
         // コントラクトセットを表示する
-        ContractSet.gameObject.SetActive(true);
+        CharaSet.gameObject.SetActive(true);
         // ContractSetPreviewをtrueにする
-        ContractSetPreview = true;
+        CharaSetPopUp = true;
     }
 
     /// <summary>
     /// 非表示
     /// </summary>
-    public void InactivateContractSet()
+    private void InactivateCharaSetPopUp()
+    {
+        // ポップアップを生成
+        Debug.Log("キャラセットの非表示");
+        // コントラクトセットを非表示にする
+        CharaSet.gameObject.SetActive(false);
+        // ContractSetPreviewをfalseにする
+        CharaSetPopUp = false;
+    }
+
+    /// <summary>
+    /// 表示
+    /// </summary>
+    private void ActivateContractSet()
+    {
+            // ポップアップを生成
+            Debug.Log("ゲーム表示");
+            // コントラクトセットをキャンバスにインスタンス化する
+            ContractSet = Instantiate(ContractSet, canvasTran, false);
+            // コントラクトセットを表示する
+            ContractSet.gameObject.SetActive(true);
+            // ContractSetPreviewをtrueにする
+            ContractSetPreview = true;
+    }
+
+    /// <summary>
+    /// 非表示
+    /// </summary>
+    private void InactivateContractSet()
     {
         // ポップアップを生成
         Debug.Log("ゲーム非表示");

@@ -1553,7 +1553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ddb7b1a4810e4a57a83bc5c835c7252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ContractSet: {fileID: 0}
+  ContractSet: {fileID: 6015682417585484922, guid: 543a6fc6174d445b98299b6170838e2b,
+    type: 3}
   canvasTran: {fileID: 844534019}
   ContractSetPreview: 0
   StampPreview: 0

@@ -36,7 +36,7 @@ public class GameData : MonoBehaviour
     [Header("表示するステージの番号")]
     public List<int> clearedStageNosList = new List<int>();
 
-
+    private const string CLEAR_POINT_KEY = "clearPoint";
 
     void Awake()
     {
@@ -49,5 +49,21 @@ public class GameData : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //Debug用
+        //SaveClearPoint();
+        //LoadClearPoint();
+
+    }
+
+    /// <summary>
+    /// TotalClearPoint の値をロード
+    /// </summary>
+    public void LoadClearPoint()
+    {
+        // Key を利用してロードを行い、戻り値を代入
+        totalClearPoint = PlayerPrefs.GetInt(CLEAR_POINT_KEY, 0);
+
+        Debug.Log("ロード : " + CLEAR_POINT_KEY + " : " + totalClearPoint);
     }
 }
