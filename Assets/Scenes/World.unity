@@ -1037,7 +1037,7 @@ GameObject:
   - component: {fileID: 522558733}
   - component: {fileID: 522558732}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1529,7 +1529,7 @@ GameObject:
   - component: {fileID: 856819671}
   - component: {fileID: 856819670}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1818,7 +1818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ContractSet: {fileID: 6015682417585484922, guid: 543a6fc6174d445b98299b6170838e2b,
     type: 3}
-  CharaSet: {fileID: 1834239793610222221, guid: cec0c5408b50c48329f3c09113938689,
+  CharaSet: {fileID: 7850695038278612972, guid: bfe489d67b0f24bcd87d88a1255710a2,
     type: 3}
   StampSet: {fileID: 6876486508538032160, guid: 4f49c9b8f49cf41bc8c36aea83fa9248,
     type: 3}
