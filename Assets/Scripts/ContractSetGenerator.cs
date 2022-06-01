@@ -33,57 +33,56 @@ public class ContractSetGenerator : MonoBehaviour
         StampPreview = false;
     }
 
-    void Update()
-    {
+    //void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        if (CharaSetPopUp == false)
+    //        {
+    //ActivateCharaSetPopUp();
+    //CharaSetPopUp = true;
+    //}
+    //          else
+    //        {
+    //InactivateCharaSetPopUp();
+    //CharaSetPopUp = false;
+    //}
+    //}
 
+    //if (CharaSetPopUp == true)
+    // {
+    //if (Input.GetMouseButtonDown(0))
+    //{
+    //    if (ContractSetPreview == false)
+    //    {
+    //        ActivateContractSet();
+    //        ContractSetPreview = true;
+    //   }
+    //   else
+    //   {
+    //        InactivateContractSet();
+    //ContractSetPreview = false;
+    //       }
+    //}
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (CharaSetPopUp == false)
-            {
-                ActivateCharaSetPopUp();
-                CharaSetPopUp = true;
-            }
-            else
-            {
-                InactivateCharaSetPopUp();
-                CharaSetPopUp = false;
-            }
-        }
+    //if (Input.GetMouseButtonDown(0) && ContractSetPreview == false && CharaSetPopUp == true)
+    //{
+    //if (ContractSetPreview == false)
+    //{
+    //ActivateContractSet();
+    //}
+    //else
+    //{
+    // InactivateContractSet();
+    //}
+    //}
 
-        if (CharaSetPopUp == true)
-        {
-            if (Input.GetKey("up"))
-            {
-                if (ContractSetPreview == false)
-                {
-                    ActivateContractSet();
-                    ContractSetPreview = true;
-                }
-                else
-                {
-                    InactivateContractSet();
-                    ContractSetPreview = false;
-                }
-            }
+    //}
 
-            //if (Input.GetMouseButtonDown(0) && ContractSetPreview == false && CharaSetPopUp == true)
-            //{
-            //if (ContractSetPreview == false)
-            //{
-            //ActivateContractSet();
-            //}
-            //else
-            //{
-            // InactivateContractSet();
-            //}
-        }
-
-    }
     /// <summary>
     /// 表示
     /// </summary>
-    private void ActivateCharaSetPopUp()
+    public void ActivateCharaSetPopUp()
     {
         // キャラセットのポップアップを生成
         Debug.Log("キャラセットの表示");
@@ -98,7 +97,7 @@ public class ContractSetGenerator : MonoBehaviour
     /// <summary>
     /// 非表示
     /// </summary>
-    private void InactivateCharaSetPopUp()
+    public void InactivateCharaSetPopUp()
     {
         // ポップアップを生成
         Debug.Log("キャラセットの非表示");
@@ -111,7 +110,7 @@ public class ContractSetGenerator : MonoBehaviour
     /// <summary>
     /// 表示
     /// </summary>
-    private void ActivateContractSet()
+    public void ActivateContractSet()
     {
             // ポップアップを生成
             Debug.Log("ゲーム表示");
@@ -126,7 +125,7 @@ public class ContractSetGenerator : MonoBehaviour
     /// <summary>
     /// 非表示
     /// </summary>
-    private void InactivateContractSet()
+    public void InactivateContractSet()
     {
         // ポップアップを生成
         Debug.Log("ゲーム非表示");
