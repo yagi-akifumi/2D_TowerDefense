@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class world_PlacementCharaSelectPopUp : MonoBehaviour
+public class WorldPlacementCharaSelectPopUp : MonoBehaviour
 {
     [SerializeField]
     private Button btnClosePopUp;
@@ -122,5 +122,27 @@ public class world_PlacementCharaSelectPopUp : MonoBehaviour
 
         // ポップアップの非表示
         //canvasGroup.DOFade(0, 0.5f).OnComplete(() => charaGenerator.InactivatePlacementCharaSelectPopUp());  // 次の手順でメソッドを追加するので、それまでコメントアウトしておいてください。
+    }
+
+    /// <summary>
+    /// 選択された SelectCharaDetail の情報をポップアップ内のピックアップに表示する
+    /// </summary>
+    /// <param name="charaData"></param>
+    public void SetSelectCharaDetail(CharaData charaData)
+    {
+        chooseCharaData = charaData;
+
+        // 各値の設定
+        imgPickupChara.sprite = charaData.charaSprite;
+
+        txtPickupCharaName.text = charaData.charaName;
+
+        txtPickupCharaAttackPower.text = charaData.attackPower.ToString();
+
+        txtPickupCharaAttackRangeType.text = charaData.attackRange.ToString();
+
+        txtPickupCharaCost.text = charaData.cost.ToString();
+
+        txtPickupCharaMaxAttackCount.text = charaData.maxAttackCount.ToString();
     }
 }
