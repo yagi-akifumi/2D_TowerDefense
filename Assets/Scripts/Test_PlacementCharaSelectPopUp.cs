@@ -10,7 +10,7 @@ public class Test_PlacementCharaSelectPopUp : MonoBehaviour
     private Button btnClosePopUp;
 
     [SerializeField]
-    private Button btnChooseChara;
+    private Button btnKoyoKeiyaku;
 
     [SerializeField]
     private CanvasGroup canvasGroup;
@@ -19,15 +19,17 @@ public class Test_PlacementCharaSelectPopUp : MonoBehaviour
     /// ポップアップの設定
     /// </summary>
     /// <param name="charaGenerator"></param>
-    public void SetUpPlacementCharaSelectPopUp()
+    private void Start()
     {
         // 各ボタンにメソッドを登録
-        btnChooseChara.onClick.AddListener(OnClickSubmitKoyoKeiyaku);
+        btnKoyoKeiyaku.onClick.AddListener(OnClickSubmitKoyoKeiyaku);
 
         btnClosePopUp.onClick.AddListener(OnClickClosePopUp);
 
         // 各ボタンを押せる状態にする
         SwithcActivateButtons(true);
+
+        Debug.Log("test");
     }
 
     /// <summary>
@@ -36,7 +38,7 @@ public class Test_PlacementCharaSelectPopUp : MonoBehaviour
     /// <param name="isSwitch"></param>
     public void SwithcActivateButtons(bool isSwitch)
     {
-        btnChooseChara.interactable = isSwitch;
+        btnKoyoKeiyaku.interactable = isSwitch;
         btnClosePopUp.interactable = isSwitch;
     }
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 898167044060661716}
   - component: {fileID: 6635272061374573929}
   m_Layer: 5
-  m_Name: btnChooseChara
+  m_Name: btnKoyoKeiyaku
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -539,7 +539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnClosePopUp: {fileID: 2571017575367069764}
-  btnChooseChara: {fileID: 6635272061374573929}
+  btnKoyoKeiyaku: {fileID: 6635272061374573929}
   canvasGroup: {fileID: 7056624273402251182}
 --- !u!1 &7201881879887011606
 GameObject:
