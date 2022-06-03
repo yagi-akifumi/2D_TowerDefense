@@ -230,6 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charaDatasList: []
+  worldPlacementCharaSelectPopUpPrefab: {fileID: 8191513039275943292, guid: 4f6c6bd3000c448688fe9a3b524460d1,
+    type: 3}
 --- !u!4 &80810423
 Transform:
   m_ObjectHideFlags: 0

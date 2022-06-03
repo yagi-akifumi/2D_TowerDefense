@@ -51,7 +51,8 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     /// ポップアップの設定
     /// </summary>
     /// <param name="charaGenerator"></param>
-    private void Start()
+    /// <param name="haveCharaDataList"></param>
+    public void WorldSetUpPlacementCharaSelectPopUp(CharaGenerator charaGenerator, List<CharaData> haveCharaDataList)
     {
         // 各ボタンにメソッドを登録
         btnKoyoKeiyaku.onClick.AddListener(OnClickSubmitKoyoKeiyaku);

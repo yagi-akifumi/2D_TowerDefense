@@ -11,10 +11,14 @@ public class WorldCharaGenerator : MonoBehaviour
     private List<CharaData> charaDatasList = new List<CharaData>();
 
     [SerializeField]
-    private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPopUp;???//?WorldPlacementCharaSelectPopUp ????????????????????
+    private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPopUpPrefab;//?WorldPlacementCharaSelectPopUp ????????????????????
+
+    [SerializeField]
+    private Transform canvasTran;                      //　PlacementCharaSelectPopUp ゲームオブジェクトの生成位置の登録用
+
 
     /// <summary>
-    /// ??
+    /// 設定
     /// </summary>
     /// <param name="gameManager"></param>
     /// <returns></returns>
@@ -22,40 +26,41 @@ public class WorldCharaGenerator : MonoBehaviour
     {
         this.gameManager = gameManager;
 
-        // TODO ???????????
+        // TODO ステージのデータを取得
 
-        // ????????????
+        // キャラのデータをリスト化
         CreateHaveCharaDatasList();
 
-        // ????????????????
+        // キャラ配置用のポップアップの生成
         yield return StartCoroutine(CreatePlacementCharaSelectPopUp());
+    
     }
 
     /// <summary>
-    /// ????????????????
+    /// 配置キャラ選択用ポップアップ生成
     /// </summary>
     /// <returns></returns>
     private IEnumerator CreatePlacementCharaSelectPopUp()
     {
-        // ?????????
-        //placementCharaSelectPopUp = Instantiate(placementCharaSelectPopUpPrefab, canvasTran, false);
+        // ポップアップを生成
+        worldPlacementCharaSelectPopUpPrefab = Instantiate(worldPlacementCharaSelectPopUpPrefab, canvasTran, false);
 
-        // ?????????????????????????
-        //placementCharaSelectPopUp.SetUpPlacementCharaSelectPopUp(this,charaDatasList);
+        // ポップアップの設定。あとでキャラ設定用の情報も渡す
+        //worldPlacementCharaSelectPopUpPrefab.WorldSetUpPlacementCharaSelectPopUp(this, charaDatasList);
 
-        // ?????????????
-        //worldPlacementCharaSelectPopUp.gameObject.SetActive(false);
+        // ポップアップを非表示にする
+        worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(false);
 
         yield return null;
     }
 
     /// <summary>
-    /// ????????????
+    /// キャラのデータをリスト化
     /// </summary>
     private void CreateHaveCharaDatasList()
     {
-        // CharaDataSO ???????????????? CharaData ???????????
-        // TODO ?????????????????????????????????????????????????????????
+        // CharaDataSO スクリプタブル・オブジェクト内の CharaData を１つずつリストに追加
+        // TODO スクリプタブル・オブジェクトではなく、実際にプレイヤーが所持しているキャラの番号を元にキャラのデータのリストを作成
         for (int i = 0; i < DataBaseManager.instance.charaDataSO.charaDatasList.Count; i++)
         {
             charaDatasList.Add(DataBaseManager.instance.charaDataSO.charaDatasList[i]);
