@@ -12,7 +12,7 @@ public class WorldGameManager : MonoBehaviour
     {
         //worldCharaGeneratorをスクリプトの設定処理を実行する
         // キャラ配置用ポップアップの生成と設定
-        
-        //StartCoroutine(worldCharaGenerator.SetUpCharaGenerator(this));
+        StartCoroutine(worldCharaGenerator.SetUpCharaGenerator(this));
+        Debug.Log("aaa");
     }
 }

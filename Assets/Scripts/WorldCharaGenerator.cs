@@ -5,7 +5,7 @@ using UnityEngine;
 public class WorldCharaGenerator : MonoBehaviour
 {
 
-    private GameManager gameManager;
+    private WorldGameManager gameManager;
 
     [SerializeField]
     private List<CharaData> charaDatasList = new List<CharaData>();
@@ -22,7 +22,7 @@ public class WorldCharaGenerator : MonoBehaviour
     /// </summary>
     /// <param name="gameManager"></param>
     /// <returns></returns>
-    public IEnumerator WorldSetUpCharaGenerator(GameManager gameManager)
+    public IEnumerator SetUpCharaGenerator(WorldGameManager gameManager)
     {
         this.gameManager = gameManager;
 
@@ -46,7 +46,7 @@ public class WorldCharaGenerator : MonoBehaviour
         worldPlacementCharaSelectPopUpPrefab = Instantiate(worldPlacementCharaSelectPopUpPrefab, canvasTran, false);
 
         // ポップアップの設定。あとでキャラ設定用の情報も渡す
-        worldPlacementCharaSelectPopUpPrefab.WorldSetUpPlacementCharaSelectPopUp(CharaGenerator, charaDatasList);
+        worldPlacementCharaSelectPopUpPrefab.WorldSetUpPlacementCharaSelectPopUp(this, charaDatasList);
 
         // ポップアップを非表示にする
         worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(false);

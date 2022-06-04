@@ -15,7 +15,7 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     [SerializeField]
     private CanvasGroup canvasGroup;
 
-    private CharaGenerator charaGenerator;
+    private WorldCharaGenerator worldCharaGenerator;
 
     [SerializeField]
     private Image imgPickupChara;
@@ -50,14 +50,16 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     /// <summary>
     /// ポップアップの設定
     /// </summary>
-    /// <param name="charaGenerator"></param>
+    /// <param name="worldCharaGenerator"></param>
     /// <param name="haveCharaDataList"></param>
-    public void WorldSetUpPlacementCharaSelectPopUp(CharaGenerator charaGenerator, List<CharaData> haveCharaDataList)
+    public void WorldSetUpPlacementCharaSelectPopUp(WorldCharaGenerator worldCharaGenerator, List<CharaData> haveCharaDataList)
     {
         // 各ボタンにメソッドを登録
         btnKoyoKeiyaku.onClick.AddListener(OnClickSubmitKoyoKeiyaku);
 
         btnClosePopUp.onClick.AddListener(OnClickClosePopUp);
+
+        Debug.Log("botan");
 
         // 各ボタンを押せる状態にする
         SwithcActivateButtons(true);
