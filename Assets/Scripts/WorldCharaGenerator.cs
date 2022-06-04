@@ -46,7 +46,7 @@ public class WorldCharaGenerator : MonoBehaviour
         worldPlacementCharaSelectPopUpPrefab = Instantiate(worldPlacementCharaSelectPopUpPrefab, canvasTran, false);
 
         // ポップアップの設定。あとでキャラ設定用の情報も渡す
-        //worldPlacementCharaSelectPopUpPrefab.WorldSetUpPlacementCharaSelectPopUp(this, charaDatasList);
+        worldPlacementCharaSelectPopUpPrefab.WorldSetUpPlacementCharaSelectPopUp(CharaGenerator, charaDatasList);
 
         // ポップアップを非表示にする
         worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(false);
