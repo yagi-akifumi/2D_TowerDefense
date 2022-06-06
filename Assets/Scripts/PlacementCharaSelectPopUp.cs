@@ -55,12 +55,13 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
     public void SetUpPlacementCharaSelectPopUp(CharaGenerator charaGenerator, List<CharaData> haveCharaDataList)
     {   //  <=  ☆　第2引数を追加します
 
+    
         this.charaGenerator = charaGenerator;
 
         // TODO 他に設定項目があったら追加する
 
         // ポップアップを一度見えない状態にする
-        canvasGroup.alpha = 0;
+        //canvasGroup.alpha = 0;
 
         // 徐々にポップアップを表示する
         ShowPopUp();

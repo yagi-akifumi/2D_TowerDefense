@@ -87,6 +87,7 @@ public class CharaGenerator : MonoBehaviour
 
         // ポップアップを非表示にする
         placementCharaSelectPopUp.gameObject.SetActive(false);
+        Debug.Log("非表示");
 
         yield return null;
     }

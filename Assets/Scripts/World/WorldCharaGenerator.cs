@@ -51,13 +51,13 @@ public class WorldCharaGenerator : MonoBehaviour
 
         // ポップアップを非表示にする
         worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(false);
-
+        Debug.Log("aab");
         yield return null;
     }
 
     /// <summary>
-        /// キャラのデータをリスト化
-        /// </summary>
+    /// キャラのデータをリスト化
+    /// </summary>
     private void CreateHaveCharaDatasList()
     {
         // CharaDataSO スクリプタブル・オブジェクト内の CharaData を１つずつリストに追加
