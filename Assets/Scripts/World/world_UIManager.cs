@@ -24,6 +24,11 @@ public class world_UIManager : MonoBehaviour
     void Start()
     {
         worldMain.onClick.AddListener(() => SceneStateManager.instance.PreparateNextScene(SceneType.Main));
-        KoyoKeiyaku.onClick.AddListener(worldCharaGenerator.ActivatePlacementCharaSelectPopUp);
+        KoyoKeiyaku.onClick.AddListener(test);
+    }
+
+    void test()
+    {
+        worldCharaGenerator.ActivatePlacementCharaSelectPopUp();
     }
 }

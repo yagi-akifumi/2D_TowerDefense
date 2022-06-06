@@ -56,6 +56,24 @@ public class WorldCharaGenerator : MonoBehaviour
     }
 
     /// <summary>
+    /// 配置キャラ選択用ポップアップ生成
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator CreatePlacementCharaSelectPopUp2()
+    {
+        // ポップアップを生成
+        worldPlacementCharaSelectPopUpPrefab = Instantiate(worldPlacementCharaSelectPopUpPrefab, canvasTran, false);
+
+        // ポップアップの設定。あとでキャラ設定用の情報も渡す
+        worldPlacementCharaSelectPopUpPrefab.WorldSetUpPlacementCharaSelectPopUp(this, charaDatasList);
+
+        // ポップアップを非表示にする
+        worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(true);
+        Debug.Log("aac");
+        yield return null;
+    }
+
+    /// <summary>
     /// キャラのデータをリスト化
     /// </summary>
     private void CreateHaveCharaDatasList()
@@ -81,7 +99,7 @@ public class WorldCharaGenerator : MonoBehaviour
 
 
         // 配置キャラ選択用のポップアップの表示
-        placementCharaSelectPopUp.gameObject.SetActive(true);
+        worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(true);
         placementCharaSelectPopUp.ShowPopUp();
     }
 
