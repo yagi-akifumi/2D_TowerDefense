@@ -16,6 +16,7 @@ public class WorldCharaGenerator : MonoBehaviour
     [SerializeField]
     private Transform canvasTran;                      //　PlacementCharaSelectPopUp ゲームオブジェクトの生成位置の登録用
 
+    private PlacementCharaSelectPopUp placementCharaSelectPopUp;
 
     /// <summary>
     /// 設定
@@ -33,14 +34,14 @@ public class WorldCharaGenerator : MonoBehaviour
 
         // キャラ配置用のポップアップの生成
         yield return StartCoroutine(CreatePlacementCharaSelectPopUp());
-    
+
     }
 
     /// <summary>
     /// 配置キャラ選択用ポップアップ生成
     /// </summary>
     /// <returns></returns>
-    private IEnumerator CreatePlacementCharaSelectPopUp()
+    public IEnumerator CreatePlacementCharaSelectPopUp()
     {
         // ポップアップを生成
         worldPlacementCharaSelectPopUpPrefab = Instantiate(worldPlacementCharaSelectPopUpPrefab, canvasTran, false);
@@ -55,8 +56,8 @@ public class WorldCharaGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// キャラのデータをリスト化
-    /// </summary>
+        /// キャラのデータをリスト化
+        /// </summary>
     private void CreateHaveCharaDatasList()
     {
         // CharaDataSO スクリプタブル・オブジェクト内の CharaData を１つずつリストに追加
@@ -65,5 +66,45 @@ public class WorldCharaGenerator : MonoBehaviour
         {
             charaDatasList.Add(DataBaseManager.instance.charaDataSO.charaDatasList[i]);
         }
+    }
+
+    /// <summary>
+    /// 配置キャラ選択用のポップアップの表示
+    /// </summary>
+    public void ActivatePlacementCharaSelectPopUp()
+    {
+
+        // TODO ゲームの進行状態をゲーム停止に変更
+
+
+        // TODO すべての敵の移動を一時停止
+
+
+        // 配置キャラ選択用のポップアップの表示
+        placementCharaSelectPopUp.gameObject.SetActive(true);
+        placementCharaSelectPopUp.ShowPopUp();
+    }
+
+    /// <summary>
+    /// 配置キャラ選択用のポップアップの非表示
+    /// </summary>
+    public void InactivatePlacementCharaSelectPopUp()
+    {
+
+        // 配置キャラ選択用のポップアップの非表示
+        placementCharaSelectPopUp.gameObject.SetActive(false);
+
+
+        // TODO ゲームオーバーやゲームクリアではない場合
+
+
+        // TODO ゲームの進行状態をプレイ中に変更して、ゲーム再開
+
+
+        // TODO すべての敵の移動を再開
+
+
+        // TODO カレンシーの加算処理を再開
+
     }
 }

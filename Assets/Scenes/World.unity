@@ -577,7 +577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldMain: {fileID: 522558732}
   KoyoKeiyaku: {fileID: 856819670}
-  contractSetGenerator: {fileID: 1484590361}
+  worldCharaGenerator: {fileID: 0}
 --- !u!1001 &445188503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1909,11 +1909,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ContractSet: {fileID: 6015682417585484922, guid: 543a6fc6174d445b98299b6170838e2b,
     type: 3}
-  CharaSet: {fileID: 3170212471658757576, guid: 4f6c6bd3000c448688fe9a3b524460d1,
+  CharaSet: {fileID: 3118239877801356551, guid: 9725453ce52764759a1a291419bab7ed,
     type: 3}
   StampSet: {fileID: 6876486508538032160, guid: 4f49c9b8f49cf41bc8c36aea83fa9248,
     type: 3}
-  canvasTran: {fileID: 844534019}
+  canvasTran: {fileID: 369058226}
   CharaSetPopUp: 0
   ContractSetPreview: 0
   StampPreview: 0
