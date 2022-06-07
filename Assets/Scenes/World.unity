@@ -577,7 +577,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldMain: {fileID: 522558732}
   KoyoKeiyaku: {fileID: 856819670}
-  worldCharaGenerator: {fileID: 0}
 --- !u!1001 &445188503
 PrefabInstance:
   m_ObjectHideFlags: 0

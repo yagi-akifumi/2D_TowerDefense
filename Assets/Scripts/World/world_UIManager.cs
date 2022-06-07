@@ -16,19 +16,19 @@ public class world_UIManager : MonoBehaviour
     [SerializeField]
     private Button KoyoKeiyaku;
 
+    [SerializeField]
     private WorldCharaGenerator worldCharaGenerator;
+
+    
 
     private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPopUp;
 
     // Start is called before the first frame update
     void Start()
     {
+        
+        Debug.Log(worldCharaGenerator);
         worldMain.onClick.AddListener(() => SceneStateManager.instance.PreparateNextScene(SceneType.Main));
-        KoyoKeiyaku.onClick.AddListener(test);
-    }
-
-    void test()
-    {
-        worldCharaGenerator.ActivatePlacementCharaSelectPopUp();
+        KoyoKeiyaku.onClick.AddListener(worldCharaGenerator.ActivatePlacementCharaSelectPopUp);
     }
 }

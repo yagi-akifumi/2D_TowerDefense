@@ -68,7 +68,7 @@ public class WorldCharaGenerator : MonoBehaviour
         worldPlacementCharaSelectPopUpPrefab.WorldSetUpPlacementCharaSelectPopUp(this, charaDatasList);
 
         // ポップアップを非表示にする
-        worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(true);
+        worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(false);
         Debug.Log("aac");
         yield return null;
     }
@@ -97,7 +97,7 @@ public class WorldCharaGenerator : MonoBehaviour
 
         // TODO すべての敵の移動を一時停止
 
-
+        Debug.Log(worldPlacementCharaSelectPopUpPrefab);
         // 配置キャラ選択用のポップアップの表示
         worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(true);
         placementCharaSelectPopUp.ShowPopUp();
