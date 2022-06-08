@@ -93,6 +93,7 @@ public class PlacementCharaSelectPopUp2 : MonoBehaviour
     private void OnClickSubmitKoyoKeiyaku()
     {
         Debug.Log("雇用契約");
+        worldCharaGenerator.ActivatePlacementCharaSelectPopUp();
         // TODO コストの支払いが可能か最終確認
 
 
