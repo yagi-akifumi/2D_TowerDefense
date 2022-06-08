@@ -76,6 +76,30 @@ public class WorldCharaGenerator : MonoBehaviour
         Debug.Log("aab");
         yield return null;
     }
+    /// <summary>
+    /// 雇用契約ボタンを押した時の処理
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator PushKoyoKeiyaku()
+    {
+        //コントラクトセットを表示する
+        ContractSet.gameObject.SetActive(true);
+
+        //3秒停止
+        yield return new WaitForSeconds(3);
+
+        //スタンプを表示
+        BtnSubmitContractStamp.gameObject.SetActive(true);
+
+        //3秒停止
+        yield return new WaitForSeconds(3);
+
+        //コントラクトセット、スタンプを非表示にする
+        ContractSet.gameObject.SetActive(false);
+        BtnSubmitContractStamp.gameObject.SetActive(false);
+
+        yield return null;
+    }
 
     /// <summary>
     /// 配置キャラ選択用ポップアップ生成

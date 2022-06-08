@@ -15,6 +15,7 @@ public class PlacementCharaSelectPopUp2 : MonoBehaviour
     [SerializeField]
     private CanvasGroup canvasGroup;
 
+    [SerializeField]
     private WorldCharaGenerator worldCharaGenerator;
 
     [SerializeField]
@@ -93,7 +94,7 @@ public class PlacementCharaSelectPopUp2 : MonoBehaviour
     private void OnClickSubmitKoyoKeiyaku()
     {
         Debug.Log("雇用契約");
-        worldCharaGenerator.ActivatePlacementCharaSelectPopUp();
+        //worldCharaGenerator.PushKoyoKeiyaku();
         // TODO コストの支払いが可能か最終確認
 
 
