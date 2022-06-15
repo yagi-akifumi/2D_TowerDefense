@@ -57,13 +57,6 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
         //WorldCharaGeneratorをworldCharaGeneratorとし、ここで使う
         this.worldCharaGenerator = worldCharaGenerator;
 
-        // 各ボタンにメソッドを登録
-        btnKoyoKeiyaku.onClick.AddListener(OnClickSubmitKoyoKeiyaku);
-
-        btnClosePopUp.onClick.AddListener(OnClickClosePopUp);
-
-        Debug.Log("botan");
-
         // 各ボタンを押せる状態にする
         SwithcActivateButtons(true);
 
@@ -88,6 +81,13 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
                 SetSelectCharaDetail(haveCharaDataList[i]);
             }
         }
+
+        // 各ボタンにメソッドを登録
+        btnKoyoKeiyaku.onClick.AddListener(OnClickSubmitKoyoKeiyaku);
+
+        btnClosePopUp.onClick.AddListener(OnClickClosePopUp);
+
+        Debug.Log("botan");
     }
 
     /// <summary>
@@ -99,6 +99,7 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
         btnKoyoKeiyaku.interactable = isSwitch;
         btnClosePopUp.interactable = isSwitch;
     }
+
 
 
     /// <summary>
@@ -137,7 +138,40 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
 
 
         // ポップアップの非表示
-        //canvasGroup.DOFade(0, 0.5f).OnComplete(() => charaGenerator.InactivatePlacementCharaSelectPopUp());  // 次の手順でメソッドを追加するので、それまでコメントアウトしておいてください。
+        //canvasGroup.DOFade(0, 0.5f).OnComplete(() => worldCharaGenerator.InactivatePlacementCharaSelectPopUp());  // 次の手順でメソッドを追加するので、それまでコメントアウトしておいてください。
+    }
+
+    /// <summary>
+    /// 選択しているキャラを配置するボタンを押した際の処理
+    /// </summary>
+    private void OnClickSubmitChooseChara()
+    {
+
+        // コストの支払いが可能か最終確認
+        if (chooseCharaData.cost > GameData.instance.currency)
+        {
+            return;
+        }
+
+
+        // 選択しているキャラの生成
+        worldCharaGenerator.WorldCreateChooseChara(chooseCharaData);
+
+        // ポップアップの非表示
+        HidePopUp();
+    }
+
+    /// <summary>
+    /// ポップアップの表示
+    /// </summary>
+    public void ShowPopUp()
+    {
+
+        // TODO 各キャラのボタンの制御
+
+
+        // ポップアップの表示
+        canvasGroup.DOFade(1.0f, 0.5f);
     }
 
     /// <summary>

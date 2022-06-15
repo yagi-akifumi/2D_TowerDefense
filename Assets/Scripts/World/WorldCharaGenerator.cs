@@ -98,7 +98,7 @@ public class WorldCharaGenerator : MonoBehaviour
 
         //コントラクトセット、スタンプを非表示にする
         ContractSet.gameObject.SetActive(false);
-        BtnSubmitContractStamp.gameObject.SetActive(true);
+        BtnSubmitContractStamp.gameObject.SetActive(false);
 
     }
 
@@ -184,5 +184,32 @@ public class WorldCharaGenerator : MonoBehaviour
         // 配置キャラ選択用のポップアップの表示
         ContractSet.gameObject.SetActive(true);
         //placementCharaSelectPopUp.ShowPopUp();
+    }
+
+    /// <summary>
+    /// 選択したキャラを生成して配置
+    /// </summary>
+    /// <param name="charaData"></param>
+    public void WorldCreateChooseChara(CharaData charaData)
+    {
+
+        // コスト支払い
+        //GameData.instance.currency -= charaData.cost;
+
+        // キャラをタップした位置に生成
+        //CharaController chara = Instantiate(charaControllerPrefab, gridPos, Quaternion.identity);
+
+        // 位置が左下を 0,0 としているので、中央にくるように調整
+        //chara.transform.position = new Vector2(chara.transform.position.x + 0.5f, chara.transform.position.y + 0.5f);
+
+        // キャラの設定
+        //chara.SetUpChara(charaData, gameManager);    //  <=  ☆　CharaController 側に SetUpChara メソッドがまだないので、次の手順になってからコメントアウトを解除します。
+
+        Debug.Log(charaData.charaName);   // 選択しているキャラのデータがとどいているかを確認するためのログ表示
+
+
+        // キャラを List に追加
+        //gameManager.AddCharasList(chara);
+
     }
 }
