@@ -43,7 +43,7 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     private Transform selectCharaDetailTran;　　　　　　　　　//　キャラのボタンを生成する位置をアサインする
 
     [SerializeField]
-    private List<SelectCharaDetail> selectCharaDetailsList = new List<SelectCharaDetail>();　　//　生成したキャラのボタンを管理する
+    private List<WorldSelectCharaDetail> selectCharaDetailsList = new List<WorldSelectCharaDetail>();　　//　生成したキャラのボタンを管理する
 
     private CharaData chooseCharaData;　　　　　　　　　　　　//　現在選択しているキャラの情報を管理する
 
@@ -71,14 +71,15 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
         for (int i = 0; i < haveCharaDataList.Count; i++)
         {
 
+
             // ボタンのゲームオブジェクトを生成
             WorldSelectCharaDetail selectCharaDetail = Instantiate(selectCharaDetailPrefab, selectCharaDetailTran, false);
 
             // ボタンのゲームオブジェクトの設定(CharaData を設定する)
-            //selectCharaDetail.SetUpSelectCharaDetail(this, haveCharaDataList[i]);
+            selectCharaDetail.SetUpSelectCharaDetail(this, haveCharaDataList[i]);
 
             // List に追加
-            //selectCharaDetailsList.Add(selectCharaDetail);
+            selectCharaDetailsList.Add(selectCharaDetail);
 
             // 最初に生成したボタンの場合
             if (i == 0)

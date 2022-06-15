@@ -13,6 +13,8 @@ public class WorldCharaGenerator : MonoBehaviour
     [SerializeField, Header("キャラセット")]
     private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPopUpPrefab;　//WorldPlacementCharaSelectPopUp ????????????????????
 
+
+
     [SerializeField, Header("雇用契約")]
     private GameObject ContractSet;
 
@@ -23,7 +25,7 @@ public class WorldCharaGenerator : MonoBehaviour
     [SerializeField]
     private Transform canvasTran;                      //　PlacementCharaSelectPopUp ゲームオブジェクトの生成位置の登録用
 
-    private PlacementCharaSelectPopUp placementCharaSelectPopUp;
+    private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPopUp;
 
     /// <summary>
     /// 設定
@@ -50,14 +52,16 @@ public class WorldCharaGenerator : MonoBehaviour
     /// <returns></returns>
     public IEnumerator CreatePlacementCharaSelectPopUp()
     {
+        Debug.Log("aaaaa");
+
         // ポップアップを生成
-        worldPlacementCharaSelectPopUpPrefab = Instantiate(worldPlacementCharaSelectPopUpPrefab, canvasTran, false);
+        worldPlacementCharaSelectPopUp = Instantiate(worldPlacementCharaSelectPopUpPrefab, canvasTran, false);
 
         // ポップアップの設定。あとでキャラ設定用の情報も渡す
-        worldPlacementCharaSelectPopUpPrefab.WorldSetUpPlacementCharaSelectPopUp(this, charaDatasList);
+        worldPlacementCharaSelectPopUp.WorldSetUpPlacementCharaSelectPopUp(this, charaDatasList);
 
         // ポップアップを非表示にする
-        worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(false);
+        worldPlacementCharaSelectPopUp.gameObject.SetActive(false);
 
         // ポップアップを生成
         ContractSet = Instantiate(ContractSet, canvasTran, false);
@@ -71,9 +75,6 @@ public class WorldCharaGenerator : MonoBehaviour
         // スタンプを非表示にする
         BtnSubmitContractStamp.gameObject.SetActive(false);
 
-
-
-        Debug.Log("aab");
         yield return null;
     }
 
@@ -108,13 +109,13 @@ public class WorldCharaGenerator : MonoBehaviour
     public IEnumerator CreatePlacementCharaSelectPopUp2()
     {
         // ポップアップを生成
-        worldPlacementCharaSelectPopUpPrefab = Instantiate(worldPlacementCharaSelectPopUpPrefab, canvasTran, false);
+        worldPlacementCharaSelectPopUp = Instantiate(worldPlacementCharaSelectPopUpPrefab, canvasTran, false);
 
         // ポップアップの設定。あとでキャラ設定用の情報も渡す
-        worldPlacementCharaSelectPopUpPrefab.WorldSetUpPlacementCharaSelectPopUp(this, charaDatasList);
+        worldPlacementCharaSelectPopUp.WorldSetUpPlacementCharaSelectPopUp(this, charaDatasList);
 
         // ポップアップを非表示にする
-        worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(false);
+        worldPlacementCharaSelectPopUp.gameObject.SetActive(false);
         Debug.Log("aac");
         yield return null;
     }
@@ -143,7 +144,7 @@ public class WorldCharaGenerator : MonoBehaviour
 
         // TODO すべての敵の移動を一時停止
         // 配置キャラ選択用のポップアップの表示
-        worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(true);
+        worldPlacementCharaSelectPopUp.gameObject.SetActive(true);
         //placementCharaSelectPopUp.ShowPopUp();
     }
 
@@ -154,7 +155,7 @@ public class WorldCharaGenerator : MonoBehaviour
     {
 
         // 配置キャラ選択用のポップアップの非表示
-        placementCharaSelectPopUp.gameObject.SetActive(false);
+        worldPlacementCharaSelectPopUp.gameObject.SetActive(false);
 
 
         // TODO ゲームオーバーやゲームクリアではない場合

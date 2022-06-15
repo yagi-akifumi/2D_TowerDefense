@@ -13,7 +13,7 @@ public class WorldSelectCharaDetail : MonoBehaviour
     [SerializeField]
     private Image worldImgChara;
 
-    private PlacementCharaSelectPopUp worldPlacementCharaSelectPop;
+    private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPop;
 
     private CharaData worldCharaData;
 
@@ -22,7 +22,7 @@ public class WorldSelectCharaDetail : MonoBehaviour
     /// </summary>
     /// <param name="placementCharaSelectPop"></param>
     /// <param name="charaData"></param>
-    public void SetUpSelectCharaDetail2(PlacementCharaSelectPopUp worldPlacementCharaSelectPop, CharaData worldCharaData)
+    public void SetUpSelectCharaDetail(WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPop, CharaData worldCharaData)
     {
         //WorldCharaGeneratorをworldCharaGeneratorとし、ここで使う
         this.worldPlacementCharaSelectPop = worldPlacementCharaSelectPop;
