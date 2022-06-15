@@ -21,11 +21,13 @@ public class WorldCharaGenerator : MonoBehaviour
     [SerializeField, Header("スタンプ")]
     private GameObject BtnSubmitContractStamp;
 
-
-    [SerializeField]
+   [SerializeField]
     private Transform canvasTran;                      //　PlacementCharaSelectPopUp ゲームオブジェクトの生成位置の登録用
 
     private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPopUp;
+
+    [SerializeField, Header("キャラのデータリスト")]
+    private List<CharaData> worldCharaDatasList = new List<CharaData>();
 
     /// <summary>
     /// 設定
@@ -39,7 +41,7 @@ public class WorldCharaGenerator : MonoBehaviour
         // TODO ステージのデータを取得
 
         // キャラのデータをリスト化
-        CreateHaveCharaDatasList();
+        WorldCreateHaveCharaDatasList();
 
         // キャラ配置用のポップアップの生成
         yield return StartCoroutine(CreatePlacementCharaSelectPopUp());
@@ -123,7 +125,7 @@ public class WorldCharaGenerator : MonoBehaviour
     /// <summary>
     /// キャラのデータをリスト化
     /// </summary>
-    private void CreateHaveCharaDatasList()
+    private void WorldCreateHaveCharaDatasList()
     {
         // CharaDataSO スクリプタブル・オブジェクト内の CharaData を１つずつリストに追加
         // TODO スクリプタブル・オブジェクトではなく、実際にプレイヤーが所持しているキャラの番号を元にキャラのデータのリストを作成

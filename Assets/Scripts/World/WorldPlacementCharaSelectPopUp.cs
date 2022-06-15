@@ -15,6 +15,7 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     [SerializeField]
     private CanvasGroup canvasGroup;
 
+
     [SerializeField]
     private WorldCharaGenerator worldCharaGenerator;
 
@@ -43,8 +44,9 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     private Transform selectCharaDetailTran;　　　　　　　　　//　キャラのボタンを生成する位置をアサインする
 
     [SerializeField]
-    private List<WorldSelectCharaDetail> selectCharaDetailsList = new List<WorldSelectCharaDetail>();　　//　生成したキャラのボタンを管理する
+    private List<WorldSelectCharaDetail> selectCharaDetailsList = new List<WorldSelectCharaDetail>();  //　生成したキャラのボタンを管理する
 
+    [SerializeField]
     private CharaData chooseCharaData;　　　　　　　　　　　　//　現在選択しているキャラの情報を管理する
 
     /// <summary>
@@ -57,13 +59,18 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
         //WorldCharaGeneratorをworldCharaGeneratorとし、ここで使う
         this.worldCharaGenerator = worldCharaGenerator;
 
+        // ポップアップを一度見えない状態にする
+        canvasGroup.alpha = 0;
+
+        // 徐々にポップアップを表示する
+        ShowPopUp();
+
         // 各ボタンを押せる状態にする
-        SwithcActivateButtons(true);
+        SwithcActivateButtons(false);
 
         // スクリプタブル・オブジェクトに登録されているキャラ分(引数で受け取った情報)を利用して
         for (int i = 0; i < haveCharaDataList.Count; i++)
         {
-
 
             // ボタンのゲームオブジェクトを生成
             WorldSelectCharaDetail selectCharaDetail = Instantiate(selectCharaDetailPrefab, selectCharaDetailTran, false);
@@ -87,7 +94,8 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
 
         btnClosePopUp.onClick.AddListener(OnClickClosePopUp);
 
-        Debug.Log("botan");
+        // 各ボタンを押せる状態にする
+        SwithcActivateButtons(true);
     }
 
     /// <summary>
@@ -133,12 +141,12 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     private void HidePopUp()
     {
 
-        //Debug.Log("HidePopUp");
+        Debug.Log("HidePopUp");
         // TODO 各キャラのボタンの制御
 
 
         // ポップアップの非表示
-        //canvasGroup.DOFade(0, 0.5f).OnComplete(() => worldCharaGenerator.InactivatePlacementCharaSelectPopUp());  // 次の手順でメソッドを追加するので、それまでコメントアウトしておいてください。
+        canvasGroup.DOFade(0, 0.5f).OnComplete(() => worldCharaGenerator.InactivatePlacementCharaSelectPopUp());  // 次の手順でメソッドを追加するので、それまでコメントアウトしておいてください。
     }
 
     /// <summary>
@@ -171,7 +179,7 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
 
 
         // ポップアップの表示
-        canvasGroup.DOFade(1.0f, 0.5f);
+        canvasGroup.DOFade(5.0f, 10.5f);
     }
 
     /// <summary>

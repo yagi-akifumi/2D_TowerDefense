@@ -120,7 +120,7 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
         CheckAllCharaButtons();
 
         // ポップアップの表示
-        canvasGroup.DOFade(1.0f, 0.5f);
+        canvasGroup.DOFade(10.0f, 10.5f);
     }
 
     /// <summary>
