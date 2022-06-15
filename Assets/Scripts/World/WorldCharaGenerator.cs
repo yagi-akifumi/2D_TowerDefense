@@ -10,8 +10,15 @@ public class WorldCharaGenerator : MonoBehaviour
     [SerializeField]
     private List<CharaData> charaDatasList = new List<CharaData>();
 
-    [SerializeField]
-    private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPopUpPrefab;//?WorldPlacementCharaSelectPopUp ????????????????????
+    [SerializeField, Header("キャラセット")]
+    private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPopUpPrefab;　//WorldPlacementCharaSelectPopUp ????????????????????
+
+    [SerializeField, Header("雇用契約")]
+    private GameObject ContractSet;
+
+    [SerializeField, Header("スタンプ")]
+    private GameObject BtnSubmitContractStamp;
+
 
     [SerializeField]
     private Transform canvasTran;                      //　PlacementCharaSelectPopUp ゲームオブジェクトの生成位置の登録用
@@ -51,8 +58,47 @@ public class WorldCharaGenerator : MonoBehaviour
 
         // ポップアップを非表示にする
         worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(false);
+
+        // ポップアップを生成
+        ContractSet = Instantiate(ContractSet, canvasTran, false);
+
+        // ポップアップを非表示にする
+        ContractSet.gameObject.SetActive(false);
+
+        // スタンプを生成
+        BtnSubmitContractStamp = Instantiate(BtnSubmitContractStamp, canvasTran, false);
+
+        // スタンプを非表示にする
+        BtnSubmitContractStamp.gameObject.SetActive(false);
+
+
+
         Debug.Log("aab");
         yield return null;
+    }
+
+    /// <summary>
+    /// 雇用契約ボタンを押した時の処理
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator PushKoyoKeiyaku()
+    {
+        //コントラクトセットを表示する
+        ContractSet.gameObject.SetActive(true);
+
+        //3秒停止
+        yield return new WaitForSeconds(3);
+
+        //スタンプを表示
+        BtnSubmitContractStamp.gameObject.SetActive(true);
+
+        //3秒停止
+        yield return new WaitForSeconds(3);
+
+        //コントラクトセット、スタンプを非表示にする
+        ContractSet.gameObject.SetActive(false);
+        BtnSubmitContractStamp.gameObject.SetActive(true);
+
     }
 
     /// <summary>
@@ -96,11 +142,9 @@ public class WorldCharaGenerator : MonoBehaviour
 
 
         // TODO すべての敵の移動を一時停止
-
-        Debug.Log(worldPlacementCharaSelectPopUpPrefab);
         // 配置キャラ選択用のポップアップの表示
         worldPlacementCharaSelectPopUpPrefab.gameObject.SetActive(true);
-        placementCharaSelectPopUp.ShowPopUp();
+        //placementCharaSelectPopUp.ShowPopUp();
     }
 
     /// <summary>
@@ -124,5 +168,20 @@ public class WorldCharaGenerator : MonoBehaviour
 
         // TODO カレンシーの加算処理を再開
 
+    }
+
+    /// <summary>
+    /// 配置キャラ選択用のポップアップの表示
+    /// </summary>
+    public void ActivateContractSet()
+    {
+
+        // TODO ゲームの進行状態をゲーム停止に変更
+
+
+        // TODO すべての敵の移動を一時停止
+        // 配置キャラ選択用のポップアップの表示
+        ContractSet.gameObject.SetActive(true);
+        //placementCharaSelectPopUp.ShowPopUp();
     }
 }

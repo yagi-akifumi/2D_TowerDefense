@@ -15,6 +15,7 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     [SerializeField]
     private CanvasGroup canvasGroup;
 
+    [SerializeField]
     private WorldCharaGenerator worldCharaGenerator;
 
     [SerializeField]
@@ -36,7 +37,7 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     private Text txtPickupCharaMaxAttackCount;
 
     [SerializeField]
-    private SelectCharaDetail selectCharaDetailPrefab;　　　　//　キャラのボタン用のプレファブをアサインする
+    private WorldSelectCharaDetail selectCharaDetailPrefab;　　　　//　キャラのボタン用のプレファブをアサインする
 
     [SerializeField]
     private Transform selectCharaDetailTran;　　　　　　　　　//　キャラのボタンを生成する位置をアサインする
@@ -46,7 +47,6 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
 
     private CharaData chooseCharaData;　　　　　　　　　　　　//　現在選択しているキャラの情報を管理する
 
-
     /// <summary>
     /// ポップアップの設定
     /// </summary>
@@ -54,6 +54,9 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     /// <param name="haveCharaDataList"></param>
     public void WorldSetUpPlacementCharaSelectPopUp(WorldCharaGenerator worldCharaGenerator, List<CharaData> haveCharaDataList)
     {
+        //WorldCharaGeneratorをworldCharaGeneratorとし、ここで使う
+        this.worldCharaGenerator = worldCharaGenerator;
+
         // 各ボタンにメソッドを登録
         btnKoyoKeiyaku.onClick.AddListener(OnClickSubmitKoyoKeiyaku);
 
@@ -63,6 +66,27 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
 
         // 各ボタンを押せる状態にする
         SwithcActivateButtons(true);
+
+        // スクリプタブル・オブジェクトに登録されているキャラ分(引数で受け取った情報)を利用して
+        for (int i = 0; i < haveCharaDataList.Count; i++)
+        {
+
+            // ボタンのゲームオブジェクトを生成
+            WorldSelectCharaDetail selectCharaDetail = Instantiate(selectCharaDetailPrefab, selectCharaDetailTran, false);
+
+            // ボタンのゲームオブジェクトの設定(CharaData を設定する)
+            //selectCharaDetail.SetUpSelectCharaDetail(this, haveCharaDataList[i]);
+
+            // List に追加
+            //selectCharaDetailsList.Add(selectCharaDetail);
+
+            // 最初に生成したボタンの場合
+            if (i == 0)
+            {
+                // 選択しているキャラとして初期値に設定
+                SetSelectCharaDetail(haveCharaDataList[i]);
+            }
+        }
     }
 
     /// <summary>
@@ -75,33 +99,6 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
         btnClosePopUp.interactable = isSwitch;
     }
 
-    /// <summary>
-    /// ポップアップの表示
-    /// </summary>
-    public void ShowPopUp()
-    {
-        // TODO 各キャラのボタンの制御
-
-
-        // ポップアップの表示
-        canvasGroup.DOFade(1.0f, 0.5f);
-    }
-
-    /// <summary>
-    /// 選択しているキャラを配置するボタンを押した際の処理
-    /// </summary>
-    private void OnClickSubmitKoyoKeiyaku()
-    {
-        Debug.Log("雇用契約");
-        // TODO コストの支払いが可能か最終確認
-
-
-        // TODO 選択しているキャラの生成
-
-
-        // ポップアップの非表示
-        HidePopUp();
-    }
 
     /// <summary>
     /// 配置を止めるボタンを押した際の処理
@@ -111,6 +108,21 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
         Debug.Log("閉じる1");
         // ポップアップの非表示
         HidePopUp();
+    }
+
+    /// <summary>
+    /// 選択しているキャラを配置するボタンを押した際の処理
+    /// </summary>
+    private void OnClickSubmitKoyoKeiyaku()
+    {
+        Debug.Log("雇用契約");
+        StartCoroutine(worldCharaGenerator.PushKoyoKeiyaku());
+
+        // TODO コストの支払いが可能か最終確認
+
+
+        // TODO 選択しているキャラの生成
+
     }
 
     /// <summary>
