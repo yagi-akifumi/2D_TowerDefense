@@ -23,7 +23,7 @@ public class SelectCharaDetail : MonoBehaviour
     /// <param name="charaData"></param>
     public void SetUpSelectCharaDetail(PlacementCharaSelectPopUp placementCharaSelectPop, CharaData charaData)
     {
-
+        //WorldCharaGeneratorをworldCharaGeneratorとし、ここで使う
         this.placementCharaSelectPop = placementCharaSelectPop;
         this.charaData = charaData;
 
@@ -41,7 +41,6 @@ public class SelectCharaDetail : MonoBehaviour
 
         // コストに応じてボタンを押せるかどうかを切り替える
         ChangeActivateButton(JudgePermissionCost(GameData.instance.currency));
-
     }
 
     /// <summary>

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class WorldCharaGenerator : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class WorldCharaGenerator : MonoBehaviour
 
     [SerializeField, Header("キャラのデータリスト")]
     private List<CharaData> worldCharaDatasList = new List<CharaData>();
+
+
 
     /// <summary>
     /// 設定
@@ -78,6 +81,23 @@ public class WorldCharaGenerator : MonoBehaviour
         BtnSubmitContractStamp.gameObject.SetActive(false);
 
         yield return null;
+    }
+
+    /// <summary>
+    /// 配置キャラ選択用のポップアップの表示
+    /// </summary>
+    public void ActivatePlacementCharaSelectPopUp()
+    {
+
+        // TODO ゲームの進行状態をゲーム停止に変更
+
+
+        // TODO すべての敵の移動を一時停止
+
+
+        // 配置キャラ選択用のポップアップの表示
+        worldPlacementCharaSelectPopUp.gameObject.SetActive(true);
+        worldPlacementCharaSelectPopUp.ShowPopUp();
     }
 
     /// <summary>
@@ -136,21 +156,6 @@ public class WorldCharaGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// 配置キャラ選択用のポップアップの表示
-    /// </summary>
-    public void ActivatePlacementCharaSelectPopUp()
-    {
-
-        // TODO ゲームの進行状態をゲーム停止に変更
-
-
-        // TODO すべての敵の移動を一時停止
-        // 配置キャラ選択用のポップアップの表示
-        worldPlacementCharaSelectPopUp.gameObject.SetActive(true);
-        //placementCharaSelectPopUp.ShowPopUp();
-    }
-
-    /// <summary>
     /// 配置キャラ選択用のポップアップの非表示
     /// </summary>
     public void InactivatePlacementCharaSelectPopUp()
@@ -171,6 +176,20 @@ public class WorldCharaGenerator : MonoBehaviour
 
         // TODO カレンシーの加算処理を再開
 
+    }
+
+    /// <summary>
+    /// キャラのデータをリスト化
+    /// </summary>
+    private void CreateHaveCharaDatasList()
+    {
+
+        // CharaDataSO スクリプタブル・オブジェクト内の CharaData を１つずつリストに追加
+        // TODO スクリプタブル・オブジェクトではなく、実際にプレイヤーが所持しているキャラの番号を元にキャラのデータのリストを作成
+        for (int i = 0; i < DataBaseManager.instance.charaDataSO.charaDatasList.Count; i++)
+        {
+            charaDatasList.Add(DataBaseManager.instance.charaDataSO.charaDatasList[i]);
+        }
     }
 
     /// <summary>

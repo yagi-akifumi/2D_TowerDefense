@@ -8,7 +8,7 @@ public class WorldSelectCharaDetail : MonoBehaviour
 {
     [SerializeField]
     private Button worldBtnSelectCharaDetail;
-
+    
     [SerializeField]
     private Image worldImgChara;
 
@@ -28,7 +28,8 @@ public class WorldSelectCharaDetail : MonoBehaviour
         this.worldCharaData = worldCharaData;
 
 
-        // TODO ボタンを押せない状態に切り替える
+        // ボタンを押せない状態に切り替える
+        ChangeActivateButton(true);
 
 
         worldImgChara.sprite = this.worldCharaData.charaSprite;
@@ -38,8 +39,8 @@ public class WorldSelectCharaDetail : MonoBehaviour
         worldBtnSelectCharaDetail.onClick.AddListener(OnClickSelectCharaDetail);
 
 
-        // TODO コストに応じてボタンを押せるかどうかを切り替える
-
+        // コストに応じてボタンを押せるかどうかを切り替える
+        //ChangeActivateButton(JudgePermissionCost(GameData.instance.currency));
     }
 
     /// <summary>
@@ -52,6 +53,33 @@ public class WorldSelectCharaDetail : MonoBehaviour
 
         // タップした SelectCharaDetail の情報をポップアップに送る
         // TODO 次の手順で、PlacementCharaSelectPop スクリプト内に SetSelectCharaDetail メソッドを作成するため、それまでコメントアウトしておいてください
-        //placementCharaSelectPop.SetSelectCharaDetail(charaData);
+        worldPlacementCharaSelectPop.SetSelectCharaDetail(worldCharaData);
     }
+
+    /// <summary>
+    /// ボタンを押せる状態の切り替え
+    /// </summary>
+    public void ChangeActivateButton(bool isSwitch)
+    {
+        worldBtnSelectCharaDetail.interactable = isSwitch;
+    }
+
+    /// <summary>
+    /// ボタンの状態の取得(今後のために実装)
+    /// </summary>
+    /// <returns></returns>
+    public bool GetActivateButtonState()
+    {
+        return worldBtnSelectCharaDetail.interactable;
+    }
+
+    /// <summary>
+    /// CharaData の取得(今後のために実装)
+    /// </summary>
+    /// <returns></returns>
+    public CharaData GetCharaData()
+    {
+        return worldCharaData;
+    }
+
 }

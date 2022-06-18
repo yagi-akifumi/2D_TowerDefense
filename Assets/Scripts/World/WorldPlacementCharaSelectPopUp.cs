@@ -15,7 +15,6 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     [SerializeField]
     private CanvasGroup canvasGroup;
 
-
     [SerializeField]
     private WorldCharaGenerator worldCharaGenerator;
 
@@ -87,6 +86,7 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
                 // 選択しているキャラとして初期値に設定
                 SetSelectCharaDetail(haveCharaDataList[i]);
             }
+
         }
 
         // 各ボタンにメソッドを登録
@@ -108,7 +108,30 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
         btnClosePopUp.interactable = isSwitch;
     }
 
+    /// <summary>
+    /// ポップアップの表示
+    /// </summary>
+    public void ShowPopUp()
+    {
+        // TODO 各キャラのボタンの制御
 
+        // ポップアップの表示
+        canvasGroup.DOFade(1.0f, 0.5f);
+    }
+
+    /// <summary>
+    /// 選択しているキャラを配置するボタンを押した際の処理
+    /// </summary>
+    private void OnClickSubmitChooseChara()
+    {
+
+        // TODO コストの支払いが可能か最終確認
+
+        // TODO 選択しているキャラの生成
+
+        // ポップアップの非表示
+        HidePopUp();
+    }
 
     /// <summary>
     /// 配置を止めるボタンを押した際の処理
@@ -118,21 +141,6 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
         Debug.Log("閉じる1");
         // ポップアップの非表示
         HidePopUp();
-    }
-
-    /// <summary>
-    /// 選択しているキャラを配置するボタンを押した際の処理
-    /// </summary>
-    private void OnClickSubmitKoyoKeiyaku()
-    {
-        Debug.Log("雇用契約");
-        StartCoroutine(worldCharaGenerator.PushKoyoKeiyaku());
-
-        // TODO コストの支払いが可能か最終確認
-
-
-        // TODO 選択しているキャラの生成
-
     }
 
     /// <summary>
@@ -152,34 +160,16 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     /// <summary>
     /// 選択しているキャラを配置するボタンを押した際の処理
     /// </summary>
-    private void OnClickSubmitChooseChara()
+    private void OnClickSubmitKoyoKeiyaku()
     {
+        Debug.Log("雇用契約");
+        StartCoroutine(worldCharaGenerator.PushKoyoKeiyaku());
 
-        // コストの支払いが可能か最終確認
-        if (chooseCharaData.cost > GameData.instance.currency)
-        {
-            return;
-        }
+        // TODO コストの支払いが可能か最終確認
 
 
-        // 選択しているキャラの生成
-        worldCharaGenerator.WorldCreateChooseChara(chooseCharaData);
+        // TODO 選択しているキャラの生成
 
-        // ポップアップの非表示
-        HidePopUp();
-    }
-
-    /// <summary>
-    /// ポップアップの表示
-    /// </summary>
-    public void ShowPopUp()
-    {
-
-        // TODO 各キャラのボタンの制御
-
-
-        // ポップアップの表示
-        canvasGroup.DOFade(5.0f, 10.5f);
     }
 
     /// <summary>
