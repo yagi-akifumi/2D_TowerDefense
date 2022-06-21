@@ -8,10 +8,10 @@ using DG.Tweening;
 public class ContractDetail : MonoBehaviour
 {
     [SerializeField]
-    private Image imgChara;
+    private Image imgPickupChara;
 
     [SerializeField]
-    private Text txtCharaName;
+    private Text txtPickupCharaName;
 
     [SerializeField]
     private Button btnSubmitContractStamp;
@@ -28,6 +28,21 @@ public class ContractDetail : MonoBehaviour
     [SerializeField]
     private Image imgContractStamp;
 
+    [SerializeField]
+    private CharaData chooseCharaData;
+
+    private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPop;
+
+    private CharaData worldCharaData;
+
+    /// <summary>
+    /// 契約演出の設定
+    /// </summary>
+    /// <param name="charaData"></param>
+    void upload()
+    {
+        worldPlacementCharaSelectPop.SetSelectCharaDetail(worldCharaData);
+    }
 
     /// <summary>
     /// 契約演出の設定
@@ -37,10 +52,10 @@ public class ContractDetail : MonoBehaviour
     {
 
         // 契約したキャラの画像を設定
-        imgChara.sprite = charaData.charaSprite;
+        imgPickupChara.sprite = charaData.charaSprite;
 
         // 契約したキャラの名前を決定
-        txtCharaName.text = charaData.charaName;
+        txtPickupCharaName.text = charaData.charaName;
 
         // ContractSet にアタッチされている CanvasGroup のアルファを 0 にする
         canvasGrouContractSet.alpha = 0;

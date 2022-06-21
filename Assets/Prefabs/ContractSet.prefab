@@ -287,13 +287,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440863270078b475da4b880ffc58cf3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imgChara: {fileID: 8402178541351362288}
-  txtCharaName: {fileID: 1543185440082042367}
+  imgPickupChara: {fileID: 8402178541351362288}
+  txtPickupCharaName: {fileID: 1543185440082042367}
   btnSubmitContractStamp: {fileID: 0}
   btnFilter: {fileID: 3203333893209596960}
   canvasGrouContractSet: {fileID: 867272341436092913}
   canvasGroupSubmitContractStamp: {fileID: 0}
   imgContractStamp: {fileID: 0}
+  chooseCharaData:
+    charaNo: 0
+    cost: 0
+    charaSprite: {fileID: 0}
+    charaName: 
+    attackPower: 0
+    attackRange: 0
+    intervalAttackTime: 0
+    maxAttackCount: 0
+    discription: 
+    charaAnim: {fileID: 0}
 --- !u!225 &867272341436092913
 CanvasGroup:
   m_ObjectHideFlags: 0

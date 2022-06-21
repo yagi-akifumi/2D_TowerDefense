@@ -37,6 +37,9 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     private Text txtPickupCharaMaxAttackCount;
 
     [SerializeField]
+    private Text txtDiscription;
+
+    [SerializeField]
     private WorldSelectCharaDetail selectCharaDetailPrefab;　　　　//　キャラのボタン用のプレファブをアサインする
 
     [SerializeField]
@@ -192,6 +195,7 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
         txtPickupCharaCost.text = charaData.cost.ToString();
 
         txtPickupCharaMaxAttackCount.text = charaData.maxAttackCount.ToString();
+
     }
 }
 
