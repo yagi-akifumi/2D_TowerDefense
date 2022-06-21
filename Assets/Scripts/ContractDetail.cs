@@ -41,7 +41,12 @@ public class ContractDetail : MonoBehaviour
     /// <param name="charaData"></param>
     void upload()
     {
-        worldPlacementCharaSelectPop.SetSelectCharaDetail(worldCharaData);
+        //WorldCharaGeneratorをworldCharaGeneratorとし、ここで使う
+        this.worldPlacementCharaSelectPop = worldPlacementCharaSelectPop;
+        this.worldCharaData = worldCharaData;
+
+        imgPickupChara.sprite = this.worldCharaData.charaSprite;
+
     }
 
     /// <summary>
@@ -111,5 +116,20 @@ public class ContractDetail : MonoBehaviour
     {
         // 契約演出を終了して、ポップアップも閉じる
         canvasGrouContractSet.DOFade(0.0f, 0.5f).SetEase(Ease.Linear).OnComplete(() => { Destroy(gameObject); });
+    }
+
+    /// <summary>
+    /// 選択された SelectCharaDetail の情報をポップアップ内のピックアップに表示する
+    /// </summary>
+    /// <param name="charaData"></param>
+    public void SetSelectCharaDetail2(CharaData charaData)
+    {
+        chooseCharaData = charaData;
+
+        // 各値の設定
+        imgPickupChara.sprite = charaData.charaSprite;
+
+        txtPickupCharaName.text = charaData.charaName;
+
     }
 }

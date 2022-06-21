@@ -72,7 +72,7 @@ public class WorldCharaGenerator : MonoBehaviour
         ContractSet = Instantiate(ContractSet, canvasTran, false);
 
         // ポップアップを非表示にする
-        ContractSet.gameObject.SetActive(false);
+        ContractSet.gameObject.SetActive(true);
 
         // スタンプを生成
         BtnSubmitContractStamp = Instantiate(BtnSubmitContractStamp, canvasTran, false);
