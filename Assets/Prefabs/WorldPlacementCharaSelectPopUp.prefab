@@ -1973,10 +1973,22 @@ MonoBehaviour:
   txtPickupCharaAttackRangeType: {fileID: 2019502585853977626}
   txtPickupCharaCost: {fileID: 806500613750092286}
   txtPickupCharaMaxAttackCount: {fileID: 4741151255279909014}
+  txtDiscription: {fileID: 0}
   selectCharaDetailPrefab: {fileID: 2465213542608297572, guid: 140ede17370cf40cf9617e64874184bb,
     type: 3}
   selectCharaDetailTran: {fileID: 3323713047379700717}
   selectCharaDetailsList: []
+  chooseCharaData:
+    charaNo: 0
+    cost: 0
+    charaSprite: {fileID: 0}
+    charaName: 
+    attackPower: 0
+    attackRange: 0
+    intervalAttackTime: 0
+    maxAttackCount: 0
+    discription: 
+    charaAnim: {fileID: 0}
 --- !u!1 &9145301093319524586
 GameObject:
   m_ObjectHideFlags: 0

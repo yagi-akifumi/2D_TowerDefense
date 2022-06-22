@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u540D\u524D"
+  m_Text: 
 --- !u!1 &3103477187981960996
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,8 +145,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4814029082027783119, guid: f00a08f0d1d764205bc6ae5fe4a5dad9,
-    type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -300,21 +299,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 867272341436092913}
-  worldCharaGenerator: {fileID: 0}
   imgPickupChara: {fileID: 8402178541351362288}
   txtPickupCharaName: {fileID: 1543185440082042367}
-  selectCharaDetailsList: []
-  chooseCharaData:
-    charaNo: 0
-    cost: 0
-    charaSprite: {fileID: 0}
-    charaName: 
-    attackPower: 0
-    attackRange: 0
-    intervalAttackTime: 0
-    maxAttackCount: 0
-    discription: 
-    charaAnim: {fileID: 0}
 --- !u!1 &6917238982518331323
 GameObject:
   m_ObjectHideFlags: 0

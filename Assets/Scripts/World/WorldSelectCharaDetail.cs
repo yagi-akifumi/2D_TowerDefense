@@ -14,6 +14,9 @@ public class WorldSelectCharaDetail : MonoBehaviour
 
     private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPop;
 
+    private WorldContractSet worldContractSet;
+
+
     private CharaData worldCharaData;
 
     /// <summary>

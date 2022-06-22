@@ -17,7 +17,11 @@ public class WorldCharaGenerator : MonoBehaviour
 
 
     [SerializeField, Header("雇用契約")]
-    private GameObject ContractSet;
+    private WorldContractSet ContractSetPrefab;
+
+    [SerializeField]
+    private WorldContractSet worldContractSet;
+
 
     [SerializeField, Header("スタンプ")]
     private GameObject BtnSubmitContractStamp;
@@ -69,10 +73,10 @@ public class WorldCharaGenerator : MonoBehaviour
         worldPlacementCharaSelectPopUp.gameObject.SetActive(false);
 
         // ポップアップを生成
-        ContractSet = Instantiate(ContractSet, canvasTran, false);
+        worldContractSet = Instantiate(ContractSetPrefab, canvasTran, false);
 
         // ポップアップを非表示にする
-        ContractSet.gameObject.SetActive(true);
+        worldContractSet.gameObject.SetActive(false);
 
         // スタンプを生成
         BtnSubmitContractStamp = Instantiate(BtnSubmitContractStamp, canvasTran, false);
@@ -104,23 +108,36 @@ public class WorldCharaGenerator : MonoBehaviour
     /// 雇用契約ボタンを押した時の処理
     /// </summary>
     /// <returns></returns>
-    public IEnumerator PushKoyoKeiyaku()
+    public IEnumerator PushKoyoKeiyaku(CharaData chooseCharaData)
     {
+        //コントラクトセットに情報を届ける
+        worldContractSet.SetSelectCharaDetail(chooseCharaData);
+
         //コントラクトセットを表示する
-        ContractSet.gameObject.SetActive(true);
+        worldContractSet.gameObject.SetActive(true);
 
         //3秒停止
         yield return new WaitForSeconds(3);
 
         //スタンプを表示
+        //TODO ①表示する際にアニメーションの追加
+
         BtnSubmitContractStamp.gameObject.SetActive(true);
 
         //3秒停止
         yield return new WaitForSeconds(3);
 
         //コントラクトセット、スタンプを非表示にする
-        ContractSet.gameObject.SetActive(false);
+        worldContractSet.gameObject.SetActive(false);
         BtnSubmitContractStamp.gameObject.SetActive(false);
+
+        //TODO ②選択したキャラクターを雇用契約完了の画像にして、ボタンを押せないようにする
+        // このスクリプトが制御したいボタンを知っているか
+        // 知っている　問題なし　。
+        // 知らない→ボタンの情報をここにもらう
+        // 知らない→ここより前の段階でボタンの情報を知っているか調べる（他のスクリプトを確認する方法を広げてみる）
+
+
 
     }
 
@@ -203,7 +220,7 @@ public class WorldCharaGenerator : MonoBehaviour
 
         // TODO すべての敵の移動を一時停止
         // 配置キャラ選択用のポップアップの表示
-        ContractSet.gameObject.SetActive(true);
+        worldContractSet.gameObject.SetActive(true);
         //placementCharaSelectPopUp.ShowPopUp();
     }
 

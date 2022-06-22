@@ -166,7 +166,7 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     private void OnClickSubmitKoyoKeiyaku()
     {
         Debug.Log("雇用契約");
-        StartCoroutine(worldCharaGenerator.PushKoyoKeiyaku());
+        StartCoroutine(worldCharaGenerator.PushKoyoKeiyaku(chooseCharaData));
 
         // TODO コストの支払いが可能か最終確認
 
