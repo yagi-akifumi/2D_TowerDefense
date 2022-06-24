@@ -89,10 +89,10 @@ public class WorldSelectCharaDetail : MonoBehaviour
     /// ボタンを非表示にする
     /// </summary>
     /// <returns></returns>
-    public void InActive()
+    public void InActive(CharaData charaData)
     {
-        ChangeActivateButton(false);
         Debug.Log("ボタンを静止した");
+        ChangeActivateButton(false);
     }
 
 

@@ -208,6 +208,6 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     public void TestReceiveOrder(CharaData charaData)
     {
         Debug.Log("worldPlacementCharaSelectPopUpに命令を受け取る");
-        worldselectCharaDetail.InActive();
+        worldselectCharaDetail.InActive(charaData);
     }
 }
