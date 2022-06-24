@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using DG.Tweening;
+
 
 public class WorldCharaGenerator : MonoBehaviour
 {
@@ -23,10 +25,10 @@ public class WorldCharaGenerator : MonoBehaviour
     private WorldContractSet worldContractSet;
 
     [SerializeField, Header("スタンプPrefab")]
-    private GameObject StampPrefab;
+    private GameObject stampPrefab;
 
     [SerializeField, Header("スタンプ")]
-    private GameObject Stamp;
+    private GameObject stamp;
 
 
     [SerializeField]
@@ -82,10 +84,10 @@ public class WorldCharaGenerator : MonoBehaviour
         worldContractSet.gameObject.SetActive(false);
 
         // スタンプを生成
-        Stamp = Instantiate(StampPrefab, canvasTran, false);
+        stamp = Instantiate(stampPrefab, canvasTran, false);
 
         // スタンプを非表示にする
-        Stamp.gameObject.SetActive(false);
+        stamp.gameObject.SetActive(false);
 
         yield return null;
     }
@@ -125,14 +127,14 @@ public class WorldCharaGenerator : MonoBehaviour
         //スタンプを表示
         //TODO ①表示する際にアニメーションの追加
 
-        Stamp.gameObject.SetActive(true);
+        OnClickFilter();
 
         //2秒停止
         yield return new WaitForSeconds(2);
 
         //コントラクトセット、スタンプを非表示にする
         worldContractSet.gameObject.SetActive(false);
-        Stamp.gameObject.SetActive(false);
+        stamp.gameObject.SetActive(false);
 
         //TODO ②選択したキャラクターを雇用契約完了の画像にして、ボタンを押せないようにする
         // このスクリプトが制御したいボタンを知っているか
@@ -252,6 +254,32 @@ public class WorldCharaGenerator : MonoBehaviour
         // キャラを List に追加
         //gameManager.AddCharasList(chara);
 
+    }
+
+    /// <summary>
+    /// スタンプ前にタップした際の処理
+    /// </summary>
+    private void OnClickFilter()
+    {
+
+        // スタンプを動かす
+        // スタンプのサイズを３倍にする(サイズの大きくなっているもの小さくする演出につかうため)
+        stamp.transform.localScale = Vector3.one * 3;
+
+        // スタンプの角度をランダムに設定する(捺印の位置が毎回変わるようにする演出)
+        stamp.transform.eulerAngles = new Vector3(0, 0, Random.Range(-30.0f, 30.0f));
+
+        // スタンプの画像を表示
+        stamp.gameObject.SetActive(true);
+
+        // CanvasGroup の透明度を制御
+        //canvasGroupSubmitContractStamp.alpha = 1.0f;
+
+        // スタンプを元の大きさに戻す。
+        // Easeの設定により、元のサイズに戻ってから少しだけ大きくして戻すことで、スタンプを捺しているように見せる
+        stamp.transform.DOScale(Vector3.one, 0.75f)
+            .SetEase(Ease.OutBack, 1.0f);
+        
     }
 
 }

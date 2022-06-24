@@ -15,8 +15,6 @@ public class WorldContractSet : MonoBehaviour
     [SerializeField]
     private Text txtPickupCharaName;
 
-
-
     /// <param name="charaData"></param>
     public void SetSelectCharaDetail(CharaData charaData)
     {

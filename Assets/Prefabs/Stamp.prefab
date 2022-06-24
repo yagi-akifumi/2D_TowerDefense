@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 221841145770775962}
   - component: {fileID: 6186060838851744474}
   m_Layer: 5
-  m_Name: BtnSubmitContractStamp
+  m_Name: Stamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

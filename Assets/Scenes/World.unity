@@ -235,9 +235,9 @@ MonoBehaviour:
   ContractSetPrefab: {fileID: 8138229838858392055, guid: 543a6fc6174d445b98299b6170838e2b,
     type: 3}
   worldContractSet: {fileID: 0}
-  StampPrefab: {fileID: 6876486508538032160, guid: 4f49c9b8f49cf41bc8c36aea83fa9248,
+  stampPrefab: {fileID: 6876486508538032160, guid: 4f49c9b8f49cf41bc8c36aea83fa9248,
     type: 3}
-  Stamp: {fileID: 0}
+  stamp: {fileID: 0}
   canvasTran: {fileID: 369058226}
   worldCharaDatasList: []
 --- !u!4 &80810423
