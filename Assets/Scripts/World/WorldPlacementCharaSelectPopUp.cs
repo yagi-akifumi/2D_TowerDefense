@@ -43,6 +43,9 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     private WorldSelectCharaDetail selectCharaDetailPrefab;　　　　//　キャラのボタン用のプレファブをアサインする
 
     [SerializeField]
+    private WorldSelectCharaDetail worldselectCharaDetail;　　　　//　キャラのボタン用のプレファブをアサインする
+
+    [SerializeField]
     private Transform selectCharaDetailTran;　　　　　　　　　//　キャラのボタンを生成する位置をアサインする
 
     [SerializeField]
@@ -197,5 +200,14 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
         txtPickupCharaMaxAttackCount.text = charaData.maxAttackCount.ToString();
 
     }
-}
 
+    /// <summary>
+    /// WorldCharaGeneratorの命令を受け取る
+    /// </summary>
+    /// <param name="charaData"></param>
+    public void TestReceiveOrder(CharaData charaData)
+    {
+        Debug.Log("worldPlacementCharaSelectPopUpに命令を受け取る");
+        worldselectCharaDetail.InActive();
+    }
+}

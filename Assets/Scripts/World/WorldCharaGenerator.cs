@@ -13,10 +13,11 @@ public class WorldCharaGenerator : MonoBehaviour
     [SerializeField]
     private List<CharaData> charaDatasList = new List<CharaData>();
 
-    [SerializeField, Header("キャラセット")]
+    [SerializeField, Header("キャラセットPrefab")]
     private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPopUpPrefab;　//WorldPlacementCharaSelectPopUp ????????????????????
 
-
+    [SerializeField, Header("キャラセット")]
+    private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPopUp;
 
     [SerializeField, Header("雇用契約Prefab")]
     private WorldContractSet ContractSetPrefab;
@@ -30,11 +31,8 @@ public class WorldCharaGenerator : MonoBehaviour
     [SerializeField, Header("スタンプ")]
     private GameObject stamp;
 
-
     [SerializeField]
     private Transform canvasTran;                      //　PlacementCharaSelectPopUp ゲームオブジェクトの生成位置の登録用
-
-    private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPopUp;
 
     [SerializeField, Header("キャラのデータリスト")]
     private List<CharaData> worldCharaDatasList = new List<CharaData>();
@@ -118,6 +116,10 @@ public class WorldCharaGenerator : MonoBehaviour
         //コントラクトセットに情報を届ける
         worldContractSet.SetSelectCharaDetail(chooseCharaData);
 
+        //worldPlacementCharaSelectPopUpにボタンを押せないよう命令する
+        Debug.Log("worldPlacementCharaSelectPopUpに命令する");
+        worldPlacementCharaSelectPopUp.TestReceiveOrder(chooseCharaData);
+
         //コントラクトセットを表示する
         worldContractSet.gameObject.SetActive(true);
 
@@ -129,18 +131,22 @@ public class WorldCharaGenerator : MonoBehaviour
 
         OnClickFilter();
 
-        //2秒停止
-        yield return new WaitForSeconds(2);
+        //3秒停止
+        yield return new WaitForSeconds(4);
 
         //コントラクトセット、スタンプを非表示にする
         worldContractSet.gameObject.SetActive(false);
         stamp.gameObject.SetActive(false);
+
+
 
         //TODO ②選択したキャラクターを雇用契約完了の画像にして、ボタンを押せないようにする
         // このスクリプトが制御したいボタンを知っているか
         // 知っている　問題なし　。
         // 知らない→ボタンの情報をここにもらう
         // 知らない→ここより前の段階でボタンの情報を知っているか調べる（他のスクリプトを確認する方法を広げてみる）
+
+        
 
 
 
