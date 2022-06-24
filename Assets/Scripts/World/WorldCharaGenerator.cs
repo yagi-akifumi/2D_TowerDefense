@@ -16,17 +16,20 @@ public class WorldCharaGenerator : MonoBehaviour
 
 
 
-    [SerializeField, Header("雇用契約")]
+    [SerializeField, Header("雇用契約Prefab")]
     private WorldContractSet ContractSetPrefab;
 
-    [SerializeField]
+    [SerializeField, Header("雇用契約")]
     private WorldContractSet worldContractSet;
 
+    [SerializeField, Header("スタンプPrefab")]
+    private GameObject StampPrefab;
 
     [SerializeField, Header("スタンプ")]
-    private GameObject BtnSubmitContractStamp;
+    private GameObject Stamp;
 
-   [SerializeField]
+
+    [SerializeField]
     private Transform canvasTran;                      //　PlacementCharaSelectPopUp ゲームオブジェクトの生成位置の登録用
 
     private WorldPlacementCharaSelectPopUp worldPlacementCharaSelectPopUp;
@@ -63,26 +66,26 @@ public class WorldCharaGenerator : MonoBehaviour
     {
         Debug.Log("aaaaa");
 
-        // ポップアップを生成
+        // worldPlacementCharaSelectPopUpのポップアップを生成
         worldPlacementCharaSelectPopUp = Instantiate(worldPlacementCharaSelectPopUpPrefab, canvasTran, false);
 
-        // ポップアップの設定。あとでキャラ設定用の情報も渡す
+        // worldPlacementCharaSelectPopUpのポップアップの設定。あとでキャラ設定用の情報も渡す
         worldPlacementCharaSelectPopUp.WorldSetUpPlacementCharaSelectPopUp(this, charaDatasList);
 
-        // ポップアップを非表示にする
+        // worldPlacementCharaSelectPopUpのポップアップを非表示にする
         worldPlacementCharaSelectPopUp.gameObject.SetActive(false);
 
-        // ポップアップを生成
+        // ContractSetのポップアップを生成
         worldContractSet = Instantiate(ContractSetPrefab, canvasTran, false);
 
-        // ポップアップを非表示にする
+        // ContractSetのポップアップを非表示にする
         worldContractSet.gameObject.SetActive(false);
 
         // スタンプを生成
-        BtnSubmitContractStamp = Instantiate(BtnSubmitContractStamp, canvasTran, false);
+        Stamp = Instantiate(StampPrefab, canvasTran, false);
 
         // スタンプを非表示にする
-        BtnSubmitContractStamp.gameObject.SetActive(false);
+        Stamp.gameObject.SetActive(false);
 
         yield return null;
     }
@@ -116,20 +119,20 @@ public class WorldCharaGenerator : MonoBehaviour
         //コントラクトセットを表示する
         worldContractSet.gameObject.SetActive(true);
 
-        //3秒停止
-        yield return new WaitForSeconds(3);
+        //2秒停止
+        yield return new WaitForSeconds(2);
 
         //スタンプを表示
         //TODO ①表示する際にアニメーションの追加
 
-        BtnSubmitContractStamp.gameObject.SetActive(true);
+        Stamp.gameObject.SetActive(true);
 
-        //3秒停止
-        yield return new WaitForSeconds(3);
+        //2秒停止
+        yield return new WaitForSeconds(2);
 
         //コントラクトセット、スタンプを非表示にする
         worldContractSet.gameObject.SetActive(false);
-        BtnSubmitContractStamp.gameObject.SetActive(false);
+        Stamp.gameObject.SetActive(false);
 
         //TODO ②選択したキャラクターを雇用契約完了の画像にして、ボタンを押せないようにする
         // このスクリプトが制御したいボタンを知っているか
@@ -250,4 +253,5 @@ public class WorldCharaGenerator : MonoBehaviour
         //gameManager.AddCharasList(chara);
 
     }
+
 }

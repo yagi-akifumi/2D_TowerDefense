@@ -232,11 +232,14 @@ MonoBehaviour:
   charaDatasList: []
   worldPlacementCharaSelectPopUpPrefab: {fileID: 3172897591614405552, guid: 4f6c6bd3000c448688fe9a3b524460d1,
     type: 3}
-  ContractSet: {fileID: 6015682417585484922, guid: 543a6fc6174d445b98299b6170838e2b,
+  ContractSetPrefab: {fileID: 8138229838858392055, guid: 543a6fc6174d445b98299b6170838e2b,
     type: 3}
-  BtnSubmitContractStamp: {fileID: 6876486508538032160, guid: 4f49c9b8f49cf41bc8c36aea83fa9248,
+  worldContractSet: {fileID: 0}
+  StampPrefab: {fileID: 6876486508538032160, guid: 4f49c9b8f49cf41bc8c36aea83fa9248,
     type: 3}
+  Stamp: {fileID: 0}
   canvasTran: {fileID: 369058226}
+  worldCharaDatasList: []
 --- !u!4 &80810423
 Transform:
   m_ObjectHideFlags: 0
