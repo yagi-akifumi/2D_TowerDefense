@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Linq;
+using System;
 
 public class WorldPlacementCharaSelectPopUp : MonoBehaviour
 {
@@ -207,6 +209,16 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     /// <param name="charaData"></param>
     public void TestReceiveOrder(CharaData charaData)
     {
+        //キャラの名前は取れている
         Debug.Log(txtPickupCharaName.text);
+        //LinQでListからデータを取れると一番スマート
+        //List の機能によりデータベースのようになって管理されているキャラのボタン群から、抽出処理を行う必要
+        //ボタンを非表示にする。
+        //TESTで閉じるボタンを押せなくしてみた。btnClosePopUpを選択したボタンにしたい。
+        btnClosePopUp.interactable = false;
+        //LINQでチャレンジ
+        Debug.Log(CharaDataSO);
+        List<WorldSelectCharaDetail>buttonDatas= new List<WorldSelectCharaDetail>(CharaDataSO.selectCharaDetailsList.Where(x => x.charaData.charaName == txtPickupCharaName.text).ToList());
+
     }
 }
