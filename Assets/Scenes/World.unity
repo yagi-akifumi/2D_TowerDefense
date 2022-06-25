@@ -232,6 +232,7 @@ MonoBehaviour:
   charaDatasList: []
   worldPlacementCharaSelectPopUpPrefab: {fileID: 3172897591614405552, guid: 4f6c6bd3000c448688fe9a3b524460d1,
     type: 3}
+  worldPlacementCharaSelectPopUp: {fileID: 0}
   ContractSetPrefab: {fileID: 8138229838858392055, guid: 543a6fc6174d445b98299b6170838e2b,
     type: 3}
   worldContractSet: {fileID: 0}
@@ -517,11 +518,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 2436, y: 1125}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96

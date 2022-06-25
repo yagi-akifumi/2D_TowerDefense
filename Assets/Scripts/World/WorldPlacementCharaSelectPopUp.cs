@@ -207,7 +207,6 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     /// <param name="charaData"></param>
     public void TestReceiveOrder(CharaData charaData)
     {
-        Debug.Log("worldPlacementCharaSelectPopUpに命令を受け取る");
-        worldselectCharaDetail.InActive(charaData);
+        Debug.Log(txtPickupCharaName.text);
     }
 }
