@@ -56,6 +56,8 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     [SerializeField]
     private CharaData chooseCharaData;　　　　　　　　　　　　//　現在選択しているキャラの情報を管理する
 
+    public CharaDataSO charaDataSO;
+
     /// <summary>
     /// ポップアップの設定
     /// </summary>
@@ -211,14 +213,24 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     {
         //キャラの名前は取れている
         Debug.Log(txtPickupCharaName.text);
+
         //LinQでListからデータを取れると一番スマート
         //List の機能によりデータベースのようになって管理されているキャラのボタン群から、抽出処理を行う必要
         //ボタンを非表示にする。
         //TESTで閉じるボタンを押せなくしてみた。btnClosePopUpを選択したボタンにしたい。
         btnClosePopUp.interactable = false;
         //LINQでチャレンジ
-        Debug.Log(CharaDataSO);
-        List<WorldSelectCharaDetail>buttonDatas= new List<WorldSelectCharaDetail>(CharaDataSO.selectCharaDetailsList.Where(x => x.charaData.charaName == txtPickupCharaName.text).ToList());
-
+        //Debug.Log(CharaDataSO);
+        Debug.Log(charaDataSO.charaDatasList.Find(x => x.charaName == txtPickupCharaName.text));
+        //foreach (CharaData charaData in CharaData.instance.selectCharaDetailsList)
+        //{
     }
+    /// 参考
+    /// <param name="attackRangeType"></param>
+    /// <returns></returns>
+    //public Vector2 GetAttackRangeSize(AttackRangeType attackRangeType)
+    //{
+    //    return attackRangeSizeSO.attackRangeSizesList.Find(x => x.attackRangeType == attackRangeType).size;
+    //}
+
 }
