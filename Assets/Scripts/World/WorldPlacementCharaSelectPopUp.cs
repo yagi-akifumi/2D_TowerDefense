@@ -97,6 +97,8 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
                 SetSelectCharaDetail(haveCharaDataList[i]);
             }
 
+
+
         }
 
         // 各ボタンにメソッドを登録
@@ -174,6 +176,9 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
     {
         Debug.Log("雇用契約");
         StartCoroutine(worldCharaGenerator.PushKoyoKeiyaku(chooseCharaData));
+        WorldSelectCharaDetail chooseCharaBtn = selectCharaDetailsList.Find(x => x.GetCharaData() == chooseCharaData);
+        // ボタンを非活性化して押せない状態にする
+        chooseCharaBtn.ChangeActivateButton(false);
 
         // TODO コストの支払いが可能か最終確認
 
@@ -218,12 +223,14 @@ public class WorldPlacementCharaSelectPopUp : MonoBehaviour
         //List の機能によりデータベースのようになって管理されているキャラのボタン群から、抽出処理を行う必要
         //ボタンを非表示にする。
         //TESTで閉じるボタンを押せなくしてみた。btnClosePopUpを選択したボタンにしたい。
-        btnClosePopUp.interactable = false;
+        //btnClosePopUp.interactable = false;
         //LINQでチャレンジ
         //Debug.Log(CharaDataSO);
-        Debug.Log(charaDataSO.charaDatasList.Find(x => x.charaName == txtPickupCharaName.text));
+        //charaDataSO.charaDatasList.Find(x => x.charaName == txtPickupCharaName.text);
         //foreach (CharaData charaData in CharaData.instance.selectCharaDetailsList)
         //{
+
+        //
     }
     /// 参考
     /// <param name="attackRangeType"></param>
