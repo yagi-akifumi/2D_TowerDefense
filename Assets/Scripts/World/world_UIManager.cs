@@ -15,7 +15,6 @@ public class world_UIManager : MonoBehaviour
 
     [SerializeField]
     private Button KoyoKeiyaku;
-
     [SerializeField]
     private WorldCharaGenerator worldCharaGenerator;
 
